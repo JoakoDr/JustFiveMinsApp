@@ -2,19 +2,29 @@
 //  AppDelegate.swift
 //  AmpliApp
 //
-//  Created by Dario Autric on 8/5/19.
+//  Created by Joaquin Diaz on 8/5/19.
 //  Copyright © 2019 Joaquin Diaz. All rights reserved.
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window
+        {
+            FirebaseApiManager.sharedInstance.initFirebase()
+            let loginVC = LoginViewController()
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        }
         // Override point for customization after application launch.
         return true
     }
