@@ -21,6 +21,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.viewDidLoad()
         setupUserLocation()
         downloadFriends()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,14 +60,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
     }
     func getUserDataApi(blFin: Bool) {
-    
+    print(FirebaseApiManager.sharedInstance.arUsers[0].sLocation?.sLat)
     if(blFin)
     {
     for user in FirebaseApiManager.sharedInstance.arUsers {
-        if(user.sLocation?.sLat! == nil || user.sLocation?.sLong! == nil || user.sName == nil){
+        if user.checkDataMap() {
             print("Esta Vacio" )
         }else {
-        addMapFriends(latitude: (user.sLocation?.sLat!)!, longitude: (user.sLocation?.sLong!)!, titulo: user.sName!)
+             
+        addMapFriends(latitude: (user.sLocation?.sLat)!, longitude: (user.sLocation?.sLong)!, titulo: user.sName!)
         }
         
                                             }

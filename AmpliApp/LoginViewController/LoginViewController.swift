@@ -48,6 +48,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     {
         loginBtn?.layer.cornerRadius = 5
         registerBtn?.layer.cornerRadius = 5
+        txtEmail?.layer.cornerRadius = 5
+        txtPassword?.layer.cornerRadius = 5
+        
     }
 
     override func didReceiveMemoryWarning() {

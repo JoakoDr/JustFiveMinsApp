@@ -193,6 +193,7 @@ extension UsersViewController:UICollectionViewDelegate, UICollectionViewDataSour
             // Set up cell
             
             cellA.filterName?.text = FirebaseApiManager.sharedInstance.arFilters[indexPath.row].categoryTitle
+            cellA.iconImg?.image = UIImage(named: FirebaseApiManager.sharedInstance.arFilters[indexPath.row].categoryImg!)
             cellA.layer.borderColor = UIColor.lightGray.cgColor
             cellA.layer.backgroundColor = self.arColorFilters[indexPath.row]
             cellA.layer.cornerRadius = 6

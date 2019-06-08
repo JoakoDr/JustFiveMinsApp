@@ -104,11 +104,12 @@ class FirebaseApiManager: NSObject {
         }
         
     }
+    //method to know if the array is filtered or not
     internal func isFiltered(user: Profile?) -> Bool{
         if let userSelected = user {
             if let index = indexFilter {
                 //FirebaseApiManager.sharedInstance.arrFilterCollection[index].filter.contains(where: {$0.name})
-                isFilter = arrFilterCategory[index].arrUsers.contains(where: {$0.sJob == user?.sJob})
+                isFilter = arrFilterCategory[index].arrUsers.contains(where: {$0.sLocation?.sCountry == user?.sLocation?.sCountry})
                 
             }
         }
@@ -166,12 +167,12 @@ class FirebaseApiManager: NSObject {
        
     }
     func setCategoryData()  {
-        self.filterCountry = FilterCategory(categoryTitle: "Country", categoryImg: "", arrUsers: [])
-        self.filterCity = FilterCategory(categoryTitle: "City", categoryImg: "", arrUsers: [])
-        self.filterPostalCode = FilterCategory(categoryTitle: "Postal Code", categoryImg: "", arrUsers: [])
-        self.filterRandom = FilterCategory(categoryTitle: "Random Users", categoryImg: "", arrUsers: [])
-        self.filterJob = FilterCategory(categoryTitle: "Job", categoryImg: "", arrUsers: [])
-        self.filterUniversity = FilterCategory(categoryTitle: "University", categoryImg: "", arrUsers: [])
+        self.filterCountry = FilterCategory(categoryTitle: "Country", categoryImg: "map", arrUsers: [])
+        self.filterCity = FilterCategory(categoryTitle: "City", categoryImg: "city", arrUsers: [])
+        self.filterPostalCode = FilterCategory(categoryTitle: "Postal Code", categoryImg: "postalcode", arrUsers: [])
+        self.filterRandom = FilterCategory(categoryTitle: "Random Users", categoryImg: "random", arrUsers: [])
+        self.filterJob = FilterCategory(categoryTitle: "Job", categoryImg: "euro", arrUsers: [])
+        self.filterUniversity = FilterCategory(categoryTitle: "University", categoryImg: "uni", arrUsers: [])
         arFilters = [self.filterCountry,self.filterCity,self.filterPostalCode,self.filterRandom,self.filterJob,self.filterUniversity] as! [FilterCategory]
         categorySelected = arFilters[0]
     }

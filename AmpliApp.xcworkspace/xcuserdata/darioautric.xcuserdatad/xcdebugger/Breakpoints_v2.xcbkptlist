@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AmpliApp/FirebaseApiManager.swift"
-            timestampString = "581629199.110015"
+            timestampString = "581699690.396214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AmpliApp/FirebaseApiManager.swift"
-            timestampString = "581629199.124235"
+            timestampString = "581699690.404646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "registrarse(email:password:delegate:)"
             landmarkType = "7">
             <Locations>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AmpliApp/FirebaseApiManager.swift"
-            timestampString = "581629199.126527"
+            timestampString = "581699690.405488"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "registrarse(email:password:delegate:)"
             landmarkType = "7">
          </BreakpointContent>

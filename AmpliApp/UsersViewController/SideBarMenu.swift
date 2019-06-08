@@ -95,18 +95,27 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
             
             cellA.selectionStyle = .none
             cellA.backgroundColor=UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
+            let nameLbl = UILabel(frame: CGRect(x: 110, y: 50, width: 40, height: 20))
+            nameLbl.text = FirebaseApiManager.sharedInstance.miPerfil.sName
+            nameLbl.textColor = UIColor.white
+            cellA.addSubview(nameLbl)
+            
+            let btnLocation = UIButton(frame: CGRect(x: 110, y: 70, width: 40, height: 20))
+            btnLocation.titleLabel?.text = FirebaseApiManager.sharedInstance.miPerfil.sLocation?.sCity
+            cellA.addSubview(btnLocation)
+            
+            cellA.titleLbl?.textColor = UIColor.clear
             let cellImg: UIImageView!
             cellImg = UIImageView(frame: CGRect(x: 15, y: 20, width: 80, height: 80))
             cellImg.layer.cornerRadius = 40
             cellImg.layer.masksToBounds=true
             cellImg.contentMode = .scaleAspectFill
             cellImg.layer.masksToBounds=true
+            cellImg.layer.borderColor = UIColor.lightGray.cgColor
+            cellImg.layer.borderWidth = 2.0
             cellImg.image=UIImage(named: "user")
             cellA.addSubview(cellImg)
-           // var myUserName:UITextfield = UITextField(frame: CGRect(x: 60, y: 20, width: 40, height: 20))
-            cellA.titleLbl?.text = FirebaseApiManager.sharedInstance.miPerfil.sName
-            cellA.titleLbl?.drawText(in: CGRect(x: 60, y: 10, width: 40, height: 20))
-            cellA.titleLbl?.textColor = UIColor.white
+           
             
         } else if indexPath.row == 1 {
         

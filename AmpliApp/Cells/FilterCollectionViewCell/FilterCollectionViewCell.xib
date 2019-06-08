@@ -19,8 +19,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="110" height="80"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gub-4z-3Gt">
+                        <rect key="frame" x="43" y="12" width="25" height="25"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTK-mi-959">
-                        <rect key="frame" x="0.0" y="50" width="113" height="30"/>
+                        <rect key="frame" x="0.0" y="36" width="113" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="do5-fe-gzC"/>
                         </constraints>
@@ -28,19 +31,16 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gub-4z-3Gt">
-                        <rect key="frame" x="39" y="13" width="32" height="32"/>
-                    </imageView>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.60990343169761274" green="0.066114862478164657" blue="0.00711572712199626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="gub-4z-3Gt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="39" id="6lz-mP-oxU"/>
+                <constraint firstItem="gub-4z-3Gt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="43" id="6lz-mP-oxU"/>
                 <constraint firstItem="VTK-mi-959" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Etj-fn-46B"/>
-                <constraint firstItem="gub-4z-3Gt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="13" id="Pym-GB-uUU"/>
+                <constraint firstItem="gub-4z-3Gt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="Pym-GB-uUU"/>
                 <constraint firstAttribute="trailing" secondItem="VTK-mi-959" secondAttribute="trailing" constant="-3" id="bc7-x7-iaO"/>
-                <constraint firstItem="VTK-mi-959" firstAttribute="top" secondItem="gub-4z-3Gt" secondAttribute="bottom" constant="5" id="n97-4x-1ve"/>
-                <constraint firstAttribute="bottom" secondItem="VTK-mi-959" secondAttribute="bottom" id="uJX-Bk-orS"/>
+                <constraint firstItem="VTK-mi-959" firstAttribute="top" secondItem="gub-4z-3Gt" secondAttribute="bottom" constant="-1" id="n97-4x-1ve"/>
+                <constraint firstAttribute="bottom" secondItem="VTK-mi-959" secondAttribute="bottom" constant="14" id="uJX-Bk-orS"/>
                 <constraint firstItem="gub-4z-3Gt" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="zdG-eW-lYI"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>

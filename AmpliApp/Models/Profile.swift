@@ -23,6 +23,12 @@ class Profile: NSObject {
     var sUniversity:String?
     var sDescription:String?
     
+    
+    
+    func checkDataMap() -> Bool {
+        print("está vacio")
+        return sName != nil && sLocation?.sLat != nil && sLocation?.sLong != nil
+    }
     // pasamos el hashmap descargado de la base de datos a las variables
     
     func setMap(valores:[String:Any]){

@@ -104,6 +104,8 @@ import UIKit
         borderLayer.frame = rectForBounds(bounds)
         borderLayer.borderWidth = (isFirstResponder || text!.isNotEmpty) ? borderSize.active : borderSize.inactive
         borderLayer.borderColor = borderColor?.cgColor
+        borderLayer.superlayer?.cornerRadius = 20
+        borderLayer.superlayer?.masksToBounds = true
     }
     
     private func placeholderFontFromFont(_ font: UIFont) -> UIFont! {
