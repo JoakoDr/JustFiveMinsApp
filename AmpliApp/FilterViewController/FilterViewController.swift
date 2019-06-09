@@ -4,7 +4,7 @@ import UIKit
 
 class FilterViewController: UIViewController {
     var arrFilterUsers: [Profile?] = []
-    @IBOutlet weak var filteredCollectionView: UICollectionView!
+    @IBOutlet weak var filterCV: UICollectionView!
     //let floatingButton = MDCFloatingButton()
     
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class FilterViewController: UIViewController {
     
     internal func registerCells(){
         let nib = UINib(nibName: "UsersCollectionViewCell", bundle: nil)
-        filteredCollectionView.register(nib, forCellWithReuseIdentifier: "userCell")
+        filterCV.register(nib, forCellWithReuseIdentifier: "userCell")
         
     }
     /*
