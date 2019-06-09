@@ -13,6 +13,27 @@ import CoreLocation
 import FirebaseStorage
 import FirebaseFirestore
 
+
+extension UIImageView {
+    func downloaded(from url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() {
+                self.image = image
+            }
+            }.resume()
+    }
+    func downloaded(from link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, contentMode: mode)
+    }
+}
 class PersonalDataViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,MKMapViewDelegate, CLLocationManagerDelegate,Api,UIGestureRecognizerDelegate {
     @IBOutlet var imgUser:UIImageView?
     @IBOutlet var txtName:AkiraTextField?
@@ -25,16 +46,21 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var lblError:UILabel?
     @IBOutlet var btnEdit:UIButton?
     var editProfile:Profile?
-    var downloadURL = ""
+    var downloadURL:String?
     let imagePicker = UIImagePickerController()
     var imgData:Data?
     let alert:UIAlertController = UIAlertController(title: "Perfil Modificado", message: "¡Has modificado tu perfil", preferredStyle: UIAlertControllerStyle.actionSheet)
+    var userLocation : Location?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUserData()
         roundThings()
         imagePicker.delegate = self
+        self.hideKeyboardWhenTappedAround()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        imgUser!.isUserInteractionEnabled = true
+        imgUser!.addGestureRecognizer(tapGestureRecognizer)
         
         // Do any additional setup after loading the view.
     }
@@ -45,12 +71,25 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     }
     func setUserData()
     {
+        if FirebaseApiManager.sharedInstance.miPerfil.sImage == nil {
+            FirebaseApiManager.sharedInstance.miPerfil.sImage = "user"
+            txtName?.text = FirebaseApiManager.sharedInstance.miPerfil.sName
+            txtSurname?.text = FirebaseApiManager.sharedInstance.miPerfil.sSurname
+            txtJob?.text = FirebaseApiManager.sharedInstance.miPerfil.sJob
+            txtDescription?.text = FirebaseApiManager.sharedInstance.miPerfil.sDescription
+            txtUniversity?.text = FirebaseApiManager.sharedInstance.miPerfil.sUniversity
+        }else {
+            
+        self.imgUser!.downloaded(from: FirebaseApiManager.sharedInstance.miPerfil.sImage!)
         txtName?.text = FirebaseApiManager.sharedInstance.miPerfil.sName
         txtSurname?.text = FirebaseApiManager.sharedInstance.miPerfil.sSurname
         txtJob?.text = FirebaseApiManager.sharedInstance.miPerfil.sJob
         txtDescription?.text = FirebaseApiManager.sharedInstance.miPerfil.sDescription
         txtUniversity?.text = FirebaseApiManager.sharedInstance.miPerfil.sUniversity
-    
+            
+   
+            
+        }
     }
     func roundThings()
     {
@@ -62,7 +101,12 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         imgUser?.layer.masksToBounds=true
         imgUser?.contentMode = .scaleAspectFill
     }
-
+    func imageGetMap() -> [String:Any]
+    {
+        return [
+            "image": self.downloadURL as Any
+        ]
+    }
     @IBAction func clickNext(_ sender: Any) {
         
         FirebaseApiManager.sharedInstance.miPerfil.sName = txtName?.text
@@ -70,13 +114,38 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
             FirebaseApiManager.sharedInstance.miPerfil.sDescription = txtDescription?.text
             FirebaseApiManager.sharedInstance.miPerfil.sJob =  txtJob?.text
             FirebaseApiManager.sharedInstance.miPerfil.sUniversity = txtUniversity?.text
+        
+            
+        self.uploadPhoto()
+        FirebaseApiManager.sharedInstance.miPerfil.sImage = self.downloadURL
         FirebaseApiManager.sharedInstance.savePerfil()
         let vc = UsersViewController()
         navigationController?.pushViewController(vc, animated: false)
         
     }
-        /*
-            //Esta linea explota
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        self.imgUser?.isUserInteractionEnabled = true
+        
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func uploadPhoto()  {
         let tiempoMilis:Int = Int((Date().timeIntervalSince1970 * 1000.0).rounded())
         let ruta:String = String(format: "imagenes/imagen%d.jpg", tiempoMilis)
         let imagenRef = FirebaseApiManager.sharedInstance.firStorageRef?.child(ruta)
@@ -96,12 +165,36 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
                     
                 } else {
                     self.downloadURL = (url?.absoluteString)!
-                    print("URL descargada = "+self.downloadURL)
+                    print("URL descargada = "+self.downloadURL!)
+                    FirebaseApiManager.sharedInstance.miPerfil.sImage = self.downloadURL
+                    
+                   // self.imgUser?.image = UIImage (named: FirebaseApiManager.sharedInstance.miPerfil.sImage!)
+                    
+               
+                    FirebaseApiManager.sharedInstance.firestoreDB?.collection("users").document((FirebaseApiManager.sharedInstance.firUser?.uid)!).updateData(self.imageGetMap())
+                    { err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        }
+                        else
+                        {
+                            print("Has editado tu foto")
+                            FirebaseApiManager.sharedInstance.savePerfil()
+                            let reference = Storage.storage().reference(forURL: self.downloadURL!)
+                          //  let httpsReference = Storage.storage().reference(forURL: self.downloadURL!)
+                            
+
+                            
+
+                        }
+                    }
                 }
             }){
-                
-            }
-            */
+
+        }
+    }//Esta linea explota
+    
+    }
         
         
     
@@ -122,22 +215,7 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     }
     @IBAction func buttonOnClick(_ sender: UIButton)
     {
-        self.btnEdit?.setTitleColor(UIColor.white, for: .normal)
-        self.btnEdit?.isUserInteractionEnabled = true
         
-        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-            self.openCamera()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
-            self.openGallery()
-        }))
-        
-        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-        
-        
-        self.present(alert, animated: true, completion: nil)
     }
     func openCamera()
     {

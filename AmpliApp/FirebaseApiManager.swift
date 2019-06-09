@@ -12,9 +12,10 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseMessaging
+import CoreLocation
 
 
-class FirebaseApiManager: NSObject {
+class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
     //objeto Manager para compartir la informacion desde todas las demas clases
     static let sharedInstance:FirebaseApiManager = FirebaseApiManager()
     var firDataBasRef: DatabaseReference!
@@ -36,6 +37,7 @@ class FirebaseApiManager: NSObject {
     var indexFilter:Int?
     var indexUser:Int?
     var arrFilterCategory:[FilterCategory] = []
+    var userLocation : Location?
     
     
     
@@ -48,7 +50,7 @@ class FirebaseApiManager: NSObject {
         
     }
  
-    // metodo que descarga todos los datos del perfil y los mete en arrciudads.
+    // metodo que descarga todos los datos del perfil y los mete en arrusers.
     func getUserData(delegate:Api) {
         
         var blFin:Bool = false
@@ -61,6 +63,7 @@ class FirebaseApiManager: NSObject {
             } else {
                 self.arUsers = []
                 for document in querySnapshot!.documents {
+                    
                     let user:Profile = Profile()
                     user.sId=document.documentID
                     user.setMap(valores: document.data())
@@ -104,6 +107,47 @@ class FirebaseApiManager: NSObject {
         }
         
     }
+    func setLocation()
+    {
+        var locationManager : CLLocationManager?
+        locationManager = CLLocationManager()
+        locationManager?.requestAlwaysAuthorization()
+        locationManager?.delegate = self
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            guard let currentLocation = locationManager?.location else {
+                print("Error al pillar lat y long")
+                return
+            }
+            currentLocation.geocode { placemark, error in
+                if let error = error as? CLError {
+                    print("CLError:", error)
+                    return
+                } else if let placemark = placemark?.first {
+                    // you should always update your UI in the main thread
+                    DispatchQueue.main.async {
+                        //  update UI here
+                        
+                        print("city:", placemark.locality ?? "unknown")
+                        print("zip code:", placemark.postalCode ?? "unknown")
+                        print("country:", placemark.country ?? "unknown", terminator: "\n\n")
+                        self.userLocation = Location(sCity: placemark.locality!, sCountry: placemark.country!, sLong: currentLocation.coordinate.longitude, sLat: currentLocation.coordinate.latitude, sPostalCode: placemark.postalCode!)
+                        FirebaseApiManager.sharedInstance.firestoreDB?.collection("users").document((FirebaseApiManager.sharedInstance.firUser?.uid)!).updateData(["location": self.userLocation?.getMap()])
+                        { err in
+                            if let err = err {
+                                print("Error adding document: \(err)")
+                            }
+                            else
+                            {
+                                print("Has cargado tu location!")
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
     //method to know if the array is filtered or not
     internal func isFiltered(user: Profile?) -> Bool{
         if let userSelected = user {
@@ -127,6 +171,7 @@ class FirebaseApiManager: NSObject {
                             print("Te Registraste !")
                             print(FirebaseApiManager.sharedInstance.miPerfil.getMap())
                             print(FirebaseApiManager.sharedInstance.firUser?.uid)
+                        
     FirebaseApiManager.sharedInstance.firestoreDB?.collection("users").document((FirebaseApiManager.sharedInstance.firUser?.uid)!).setData(FirebaseApiManager.sharedInstance.miPerfil.getMap())
                                 { err in
                                 if let err = err {
@@ -148,12 +193,14 @@ class FirebaseApiManager: NSObject {
         
     }
     }
+    
     // guardamos los datos del objeto perfil en forma de hashmap en la coleccion perfiles.
     func savePerfil() {
         
             print(self.miPerfil.sEmail)
             print(FirebaseApiManager.sharedInstance.firUser?.uid)
             print(self.miPerfil.sDescription)
+        print(FirebaseApiManager.sharedInstance.miPerfil.sImage)
         FirebaseApiManager.sharedInstance.firestoreDB?.collection("users").document((FirebaseApiManager.sharedInstance.firUser?.uid)!).updateData(FirebaseApiManager.sharedInstance.miPerfil.getMap())
         { err in
             if let err = err {
@@ -162,10 +209,12 @@ class FirebaseApiManager: NSObject {
             else
             {
                 print("Has editado tu perfil")
+                FirebaseApiManager.sharedInstance.setLocation()
             }
         }
        
     }
+    
     func setCategoryData()  {
         self.filterCountry = FilterCategory(categoryTitle: "Country", categoryImg: "map", arrUsers: [])
         self.filterCity = FilterCategory(categoryTitle: "City", categoryImg: "city", arrUsers: [])

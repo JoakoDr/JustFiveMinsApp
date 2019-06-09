@@ -47,6 +47,8 @@
 		26D4FF8422A9BF7A00A86CAB /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4FF8222A9BF7A00A86CAB /* FilterCollectionViewCell.swift */; };
 		26D4FF8522A9BF7A00A86CAB /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D4FF8322A9BF7A00A86CAB /* FilterCollectionViewCell.xib */; };
 		26DDBD1C22998CB40071841A /* FirebaseApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DDBD1B22998CB40071841A /* FirebaseApiManager.swift */; };
+		5D032F0F22AD7691007A9BEA /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D032F0D22AD7691007A9BEA /* FilterViewController.swift */; };
+		5D032F1022AD7691007A9BEA /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D032F0E22AD7691007A9BEA /* FilterViewController.xib */; };
 		A2391CAA4824B835C9A6627C /* Pods_AmpliApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24435067648CCDED66B111F /* Pods_AmpliApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +81,7 @@
 		262C947D22AAB4C000E6A2DD /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		262D0D8D228871790037C3AD /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		262D0D8E228871790037C3AD /* PhotosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosViewController.xib; sourceTree = "<group>"; };
-		262F8214229B431A00C001E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		262F8214229B431A00C001E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		262F8217229B49E500C001E9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		262F8218229B49E500C001E9 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		2630FDF72285CD0500DCAD11 /* UsersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -114,6 +116,8 @@
 		26D4FF8222A9BF7A00A86CAB /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		26D4FF8322A9BF7A00A86CAB /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
 		26DDBD1B22998CB40071841A /* FirebaseApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseApiManager.swift; sourceTree = "<group>"; };
+		5D032F0D22AD7691007A9BEA /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		5D032F0E22AD7691007A9BEA /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
 		783A4459E78221B896F4B6B3 /* Pods-AmpliApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmpliApp.release.xcconfig"; path = "Target Support Files/Pods-AmpliApp/Pods-AmpliApp.release.xcconfig"; sourceTree = "<group>"; };
 		8711BBAEB8412A0E1A443530 /* Pods-AmpliApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmpliApp.debug.xcconfig"; path = "Target Support Files/Pods-AmpliApp/Pods-AmpliApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A24435067648CCDED66B111F /* Pods_AmpliApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmpliApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +287,7 @@
 		26B82A4D2283431F005BE91E /* AmpliApp */ = {
 			isa = PBXGroup;
 			children = (
+				5D032F0C22AD7654007A9BEA /* FilterViewController */,
 				262C947B22AAB4A000E6A2DD /* DetailViewController */,
 				262A297D22A46D2800A9D405 /* MapViewController */,
 				262BA6D4229DB6A500B45396 /* PersonalDataViewController */,
@@ -374,6 +379,15 @@
 				783A4459E78221B896F4B6B3 /* Pods-AmpliApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		5D032F0C22AD7654007A9BEA /* FilterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5D032F0D22AD7691007A9BEA /* FilterViewController.swift */,
+				5D032F0E22AD7691007A9BEA /* FilterViewController.xib */,
+			);
+			path = FilterViewController;
 			sourceTree = "<group>";
 		};
 		E632E1561206E1DE91CAEED2 /* Frameworks */ = {
@@ -506,6 +520,7 @@
 				26B82A8022849AEE005BE91E /* LoginViewController.xib in Resources */,
 				263D3467228EEEE20082C8CD /* MenuTableViewCell.xib in Resources */,
 				262A298122A4737500A9D405 /* MapViewController.xib in Resources */,
+				5D032F1022AD7691007A9BEA /* FilterViewController.xib in Resources */,
 				2685B3622288385200758C74 /* FriendsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -608,6 +623,7 @@
 				26B82A7F22849AEE005BE91E /* LoginViewController.swift in Sources */,
 				2645CDF6228573CC007F3BF6 /* SideBarMenu.swift in Sources */,
 				262A298022A4737500A9D405 /* MapViewController.swift in Sources */,
+				5D032F0F22AD7691007A9BEA /* FilterViewController.swift in Sources */,
 				262C947A22AAA0C500E6A2DD /* FilterCategory.swift in Sources */,
 				26B82A8522849EE1005BE91E /* LoginTextField.swift in Sources */,
 				262F8219229B49E500C001E9 /* RegisterViewController.swift in Sources */,
@@ -781,6 +797,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L283WBHYKQ;
 				INFOPLIST_FILE = AmpliApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -800,6 +817,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L283WBHYKQ;
 				INFOPLIST_FILE = AmpliApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>40133106897-545r1nhdptrm2vr027t5p00pb5mei7rl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.40133106897-545r1nhdptrm2vr027t5p00pb5mei7rl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBcnKnoRgM5ROKCPc5_uVzSWlPjh9LmPpQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>40133106897</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Onion-Project.AmpliApp</string>
+	<key>PROJECT_ID</key>
+	<string>test-e53cd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>test-e53cd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:40133106897:ios:fa43c13ad4425086</string>
+	<key>DATABASE_URL</key>
+	<string>https://test-e53cd.firebaseio.com</string>
+</dict>
+</plist>

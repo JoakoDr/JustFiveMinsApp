@@ -12,6 +12,7 @@ import UIKit
 class Profile: NSObject {
     
     //hay que poner todos los datos del registro
+    var sImage:String?
     var sId:String?
     var sBirthday:String?
     var sEmail:String?
@@ -32,6 +33,7 @@ class Profile: NSObject {
     // pasamos el hashmap descargado de la base de datos a las variables
     
     func setMap(valores:[String:Any]){
+        sImage = valores["image"] as? String
         sBirthday = valores["birthday"] as? String
         sJob = valores["job"] as? String
         sUniversity = valores["university"] as? String
@@ -46,6 +48,7 @@ class Profile: NSObject {
     func getMap() -> [String:Any] {
         
         return [
+            "image": sImage as Any,
             "birthday": sBirthday as Any,
             "name": sName as Any,
             "email": sEmail as Any,

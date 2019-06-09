@@ -12,6 +12,18 @@ import TextFieldEffects
 import FirebaseAuth
 import FirebaseFirestore
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     
     @IBOutlet var txtEmail:AkiraTextField?
@@ -31,6 +43,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
         roundButton()
         setupTargets()
         //buttonEnabled()
+        txtEmail?.text = "jo@a.com"
+        txtPassword?.text = "qwerty1"
+        self.hideKeyboardWhenTappedAround() 
         Auth.auth().addStateDidChangeListener { (auth, user) in
         }
         // Do any additional setup after loading the view.
@@ -69,7 +84,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
         if ((txtPassword?.text?.count)! >= 6)
         { if (doStringContainsNumber(_string: (txtPassword?.text)!))
         {
-            lblError?.text = "Contraseña Valida"
+            lblError?.text = ""
             txtPassword?.layer.borderColor = UIColor.green.cgColor
             self.boolValidatePass = true
             }
@@ -109,7 +124,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
         
         if (emailValidator.evaluate(with: txtEmail?.text))
         {
-            lblError?.text = "Email Correcto"
+            lblError?.text = ""
             txtEmail?.layer.borderColor = UIColor.green.cgColor
             self.boolValidateEmail = true
         }
@@ -138,3 +153,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     
     
 }
+

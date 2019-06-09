@@ -13,6 +13,8 @@ import TextFieldEffects
 import FirebaseAuth
 import FirebaseFirestore
 
+
+
 class RegisterViewController: UIViewController, Api {
     @IBOutlet var txtEmail:AkiraTextField?
     @IBOutlet var txtName:AkiraTextField?
@@ -32,6 +34,7 @@ class RegisterViewController: UIViewController, Api {
         showDatePicker()
         roundButton()
         setTargets()
+        self.hideKeyboardWhenTappedAround() 
         // Do any additional setup after loading the view.
     }
     func createUserApi(blFinRegistro: Bool) {
@@ -83,8 +86,21 @@ class RegisterViewController: UIViewController, Api {
     @objc func doneDatePicker(){
         //For date formate
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd MM yyyy"
-        txtBirthday?.text = formatter.string(from: datePicker.date)
+        formatter.dateFormat = "dd-MM-yyyy"
+       
+        var userDate:String = formatter.string(from: datePicker.date)
+        
+        var finalDate : Date =  formatter.date(from: userDate)!
+        
+        /// Todays Date
+        let now = Date()
+        /// Calender
+        let calendar = Calendar.current
+        
+        /// Get age Components
+        let ageComponents = calendar.dateComponents([.year], from: finalDate, to: now)
+        print("Age is \(ageComponents.year!)")
+        txtBirthday?.text = "\(ageComponents.year!)"
         //dismiss date picker dialog
         self.view.endEditing(true)
     }

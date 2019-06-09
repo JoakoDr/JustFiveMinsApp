@@ -9,17 +9,53 @@
 import UIKit
 import FirebaseAuth
 
+
+extension UIColor {
+    convenience init(hexString: String, alpha: CGFloat = 1.0) {
+        let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let scanner = Scanner(string: hexString)
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
+        }
+        var color: UInt32 = 0
+        scanner.scanHexInt32(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue = CGFloat(b) / 255.0
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
+    }
+    func toHexString() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        return String(format:"#%06x", rgb)
+    }
+}
+
 class UsersViewController: UIViewController, Api {
+    
     var sidebarView: SideBarMenu!
     var blackScreen: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionViewB: UICollectionView!
     var arrUsers = (FirebaseApiManager.sharedInstance.arUsers)
+    var img:String?
     
-    var arColorFilters:[CGColor] = [UIColor.orange.cgColor,UIColor.blue.cgColor,UIColor.red
-        .cgColor,UIColor.green.cgColor,UIColor.purple.cgColor,UIColor.black.cgColor]
+    var arColorFilters:[UIColor] = [UIColor(hexString: "#56FF9800") ,UIColor(hexString: "#1565C0") ,UIColor(hexString: "#D81B60") ,UIColor(hexString: "#00695C"),UIColor(hexString: "#ab47bc") ,UIColor(hexString: "#C62828") ]
     var arUsersFiltered:[String] = []
 
+    convenience init(img: String?)
+    {
+        self.init()
+        self.img = img
+        
+    }
     init() {
         super.init(nibName: "UsersViewController", bundle: nil)
         self.title = NSLocalizedString("Home" , comment: "")
@@ -63,7 +99,7 @@ class UsersViewController: UIViewController, Api {
      func setupImageAppBar()
     {
         //setup color of the bar
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.20, green:0.60, blue:0.86, alpha:1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(hexString: "#1E88E5")
         //create a new button
         let menuButton: UIButton = UIButton(type: UIButtonType.custom)
         //set image for button
@@ -78,15 +114,9 @@ class UsersViewController: UIViewController, Api {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func paddingLayoutCell(){
-        let layout = self.collectionViewB.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.sectionInset = UIEdgeInsetsMake(5, 0, 5, 0)
-        layout.itemSize = CGSize(width: (self.collectionViewB.frame.size.width - 20)/2, height: (self.collectionViewB.frame.size.height - 20)/3)
-    }
     func noShowScroll()
     {
         collectionView.showsHorizontalScrollIndicator = false
-        collectionViewB.showsVerticalScrollIndicator = false
     }
     @objc func btnMenuAction() {
         blackScreen.isHidden=false
@@ -108,8 +138,6 @@ class UsersViewController: UIViewController, Api {
         let nib = UINib(nibName: "FilterCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "filterCell")
         
-        let nib2 = UINib(nibName: "UsersCollectionViewCell", bundle: nil)
-        collectionViewB.register(nib2, forCellWithReuseIdentifier: "userCell")
     }
     func getUserDataApi(blFin: Bool) {
         if(blFin)
@@ -177,25 +205,22 @@ extension UsersViewController: SidebarViewDelegate {
 }
 extension UsersViewController:UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.collectionView {
+      
             
             return FirebaseApiManager.sharedInstance.arFilters.count
-        }
         
-        
-        return (FirebaseApiManager.sharedInstance.categorySelected?.arrUsers.count)!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if collectionView == self.collectionView {
+       
             let cellA = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCell", for: indexPath) as! FilterCollectionViewCell
             // Set up cell
             
             cellA.filterName?.text = FirebaseApiManager.sharedInstance.arFilters[indexPath.row].categoryTitle
             cellA.iconImg?.image = UIImage(named: FirebaseApiManager.sharedInstance.arFilters[indexPath.row].categoryImg!)
             cellA.layer.borderColor = UIColor.lightGray.cgColor
-            cellA.layer.backgroundColor = self.arColorFilters[indexPath.row]
+            cellA.layer.backgroundColor = self.arColorFilters[indexPath.row].cgColor
             cellA.layer.cornerRadius = 6
             cellA.layer.borderWidth = 1.0
             cellA.layer.shadowColor = UIColor.gray.cgColor
@@ -205,71 +230,20 @@ extension UsersViewController:UICollectionViewDelegate, UICollectionViewDataSour
             cellA.layer.masksToBounds = false
             cellA.layer.shadowPath = UIBezierPath(roundedRect:cellA.bounds, cornerRadius:cellA.contentView.layer.cornerRadius).cgPath
             return cellA
-        }
-            let user = FirebaseApiManager.sharedInstance.categorySelected?.arrUsers[indexPath.row]
-            
-            //if is filtered is true change the border color lf the cell
-            if (FirebaseApiManager.sharedInstance.isFiltered(user: user))
-            {
-                
-                let cellB = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as! UsersCollectionViewCell
-                
-                
-                
-                cellB.userName?.text = FirebaseApiManager.sharedInstance.arUsers[indexPath.row].sName
-                cellB.userAge?.text = FirebaseApiManager.sharedInstance.arUsers[indexPath.row].sBirthday
-                cellB.layer.borderColor = UIColor.lightGray.cgColor
-                cellB.layer.cornerRadius = 6
-                cellB.layer.borderWidth = 1.0
-                cellB.layer.shadowColor = UIColor.gray.cgColor
-                cellB.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-                cellB.layer.shadowRadius = 2.0
-                cellB.layer.shadowOpacity = 1.0
-                cellB.layer.masksToBounds = false
-                cellB.layer.shadowPath = UIBezierPath(roundedRect:cellB.bounds, cornerRadius:cellB.contentView.layer.cornerRadius).cgPath
-                return cellB
-                
-            } else {
-                
-                let cellB = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as! UsersCollectionViewCell
-                
-                
-                
-                cellB.userName?.text = FirebaseApiManager.sharedInstance.arUsers[indexPath.row].sName
-                cellB.userAge?.text = FirebaseApiManager.sharedInstance.arUsers[indexPath.row].sBirthday
-                cellB.layer.borderColor = UIColor.lightGray.cgColor
-                cellB.layer.cornerRadius = 6
-                cellB.layer.borderWidth = 1.0
-                cellB.layer.shadowColor = UIColor.gray.cgColor
-                cellB.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-                cellB.layer.shadowRadius = 2.0
-                cellB.layer.shadowOpacity = 1.0
-                cellB.layer.masksToBounds = false
-                cellB.layer.shadowPath = UIBezierPath(roundedRect:cellB.bounds, cornerRadius:cellB.contentView.layer.cornerRadius).cgPath
-                return cellB
-                
-                }
-            
+        
+        
             }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         _ = collectionView.cellForItem(at: indexPath)
-        if collectionView == self.collectionView {
+        
             let cell = collectionView.cellForItem(at: indexPath)
             var cellA = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCell", for: indexPath) as! FilterCollectionViewCell
             cellA = cell as! FilterCollectionViewCell
             cellA.layer.borderColor = UIColor.black.cgColor
             FirebaseApiManager.sharedInstance.categorySelected = FirebaseApiManager.sharedInstance.arrFilterCategory[indexPath.row]
-            collectionViewB.reloadData()
-        } else if collectionView == self.collectionViewB{
-            
-            print("Has pulsado en una celda "+(FirebaseApiManager.sharedInstance.categorySelected?.arrUsers[indexPath.row].sName)!)
-            let myUser = FirebaseApiManager.sharedInstance.categorySelected?.arrUsers[indexPath.row]
-            let addView = DetailViewController(user2: myUser)
-            addView.modalTransitionStyle = .coverVertical
-            addView.modalPresentationStyle = .overCurrentContext
-            present(addView,animated: true,completion: nil)
-        }
+        let vc=FilterViewController(arr: (FirebaseApiManager.sharedInstance.categorySelected?.arrUsers ?? nil)!)
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -279,4 +253,5 @@ extension UsersViewController:UICollectionViewDelegate, UICollectionViewDataSour
         
     }
 }
+
 

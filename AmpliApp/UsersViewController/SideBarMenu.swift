@@ -95,7 +95,7 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
             
             cellA.selectionStyle = .none
             cellA.backgroundColor=UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
-            let nameLbl = UILabel(frame: CGRect(x: 110, y: 50, width: 40, height: 20))
+            let nameLbl = UILabel(frame: CGRect(x: 110, y: 50, width: 60, height: 20))
             nameLbl.text = FirebaseApiManager.sharedInstance.miPerfil.sName
             nameLbl.textColor = UIColor.white
             cellA.addSubview(nameLbl)
@@ -113,7 +113,12 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
             cellImg.layer.masksToBounds=true
             cellImg.layer.borderColor = UIColor.lightGray.cgColor
             cellImg.layer.borderWidth = 2.0
-            cellImg.image=UIImage(named: "user")
+            if(FirebaseApiManager.sharedInstance.miPerfil.sImage == nil)
+            {
+                cellImg.image = UIImage(named: "user")
+            } else {
+                cellImg!.downloaded(from: FirebaseApiManager.sharedInstance.miPerfil.sImage!)
+            }
             cellA.addSubview(cellImg)
            
             
