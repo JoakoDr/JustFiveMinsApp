@@ -26,11 +26,12 @@ extension UIViewController {
 
 class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     
-    @IBOutlet var txtEmail:AkiraTextField?
-    @IBOutlet var txtPassword:AkiraTextField?
+    @IBOutlet var txtEmail:YoshikoTextField?
+    @IBOutlet var txtPassword:YoshikoTextField?
     @IBOutlet var loginBtn:UIButton?
     @IBOutlet var registerBtn:UIButton?
     @IBOutlet var lblError:UILabel?
+    @IBOutlet var lblError2:UILabel?
      var boolValidatePass:Bool? = false
     var boolValidateEmail:Bool? = false
     let emailValidator = EmailValidationPredicate()
@@ -90,14 +91,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
             }
             else
             {
-                lblError?.text = "Contraseña Invalida,le falta un numero"
+                lblError2?.text = "Contraseña Invalida,le falta un numero"
                 txtPassword?.layer.borderColor = UIColor.red.cgColor
                 
             }
         }
         else
         {
-            lblError?.text = "Contraseña debe de ser mas larga de 6"
+            lblError2?.text = "Contraseña debe de ser mas larga de 6"
             txtPassword?.layer.borderColor = UIColor.red.cgColor
             
         }

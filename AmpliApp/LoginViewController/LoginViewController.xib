@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="AmpliApp" customModuleProvider="target">
             <connections>
                 <outlet property="lblError" destination="nVn-My-fzX" id="mO5-B5-TbO"/>
+                <outlet property="lblError2" destination="k9a-eo-8AU" id="VTe-TS-sMN"/>
                 <outlet property="loginBtn" destination="n0s-Zt-Wg0" id="APG-Rw-Dms"/>
                 <outlet property="registerBtn" destination="gwC-fA-xdh" id="IjH-M7-Sr9"/>
                 <outlet property="txtEmail" destination="Icx-Xi-iob" id="TvG-v2-O1z"/>
@@ -29,23 +30,45 @@
                     <rect key="frame" x="93" y="77" width="165" height="165"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="userTF" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Icx-Xi-iob" userLabel="EmailTF" customClass="AkiraTextField" customModule="TextFieldEffects">
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="userTF" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Icx-Xi-iob" userLabel="EmailTF" customClass="YoshikoTextField" customModule="TextFieldEffects">
                     <rect key="frame" x="38" y="268" width="304" height="78"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                            <color key="value" red="0.25639015320000003" green="0.68173074570000003" blue="0.96389776469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="inactiveBorderColor">
+                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBackgroundColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="emailTextFieldEditing:" destination="-1" eventType="editingChanged" id="dcI-hr-pVZ"/>
                         <action selector="textFieldEditingDidChangeEmail:" destination="-1" eventType="editingDidEnd" id="FJ1-bD-E8x"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="passTF" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="igb-9D-0Eq" userLabel="PassTF" customClass="AkiraTextField" customModule="TextFieldEffects">
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="passTF" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="igb-9D-0Eq" userLabel="PassTF" customClass="YoshikoTextField" customModule="TextFieldEffects">
                     <rect key="frame" x="38" y="388" width="304" height="78"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                            <color key="value" red="0.25639015320000003" green="0.68173074570000003" blue="0.96389776469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="inactiveBorderColor">
+                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBackgroundColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="textFieldEditingDidChangePass:" destination="-1" eventType="editingDidEnd" id="ohh-iT-G5s"/>
                     </connections>
@@ -76,9 +99,16 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVn-My-fzX">
-                    <rect key="frame" x="48" y="208" width="286" height="45"/>
+                    <rect key="frame" x="38" y="347" width="304" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="0.1099019801" blue="0.01192211879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9a-eo-8AU">
+                    <rect key="frame" x="39" y="474" width="304" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="1" green="0.1099019801" blue="0.01192211879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
