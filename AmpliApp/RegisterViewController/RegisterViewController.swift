@@ -16,31 +16,38 @@ import FirebaseFirestore
 
 
 class RegisterViewController: UIViewController, Api {
-    @IBOutlet var txtEmail:AkiraTextField?
-    @IBOutlet var txtName:AkiraTextField?
-    @IBOutlet var txtBirthday:AkiraTextField?
+    @IBOutlet var txtEmail:YoshikoTextField?
+    @IBOutlet var txtName:YoshikoTextField?
+    @IBOutlet var txtBirthday:YoshikoTextField?
     //Uidate picker
     let datePicker = UIDatePicker()
-    @IBOutlet var txtPassword1:AkiraTextField?
-    @IBOutlet var txtPassword2:AkiraTextField?
+    @IBOutlet var txtPassword1:YoshikoTextField?
+    @IBOutlet var txtPassword2:YoshikoTextField?
     @IBOutlet var backBtn:UIButton?
     @IBOutlet var nextButton:UIButton?
     @IBOutlet var lblError:UILabel?
     var radioButtonValue:String!
     var bool:Bool?
+    let alert:UIAlertController = UIAlertController(title: "Revisa todos los campos", message:  "¡Vuelve a intentarlo otra vez!", preferredStyle: UIAlertControllerStyle.actionSheet)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         showDatePicker()
         roundButton()
         setTargets()
-        self.hideKeyboardWhenTappedAround() 
+        self.hideKeyboardWhenTappedAround()
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         // Do any additional setup after loading the view.
     }
     func createUserApi(blFinRegistro: Bool) {
         if blFinRegistro {
+            removeSpinner()
             let locationVC = LocationViewController()
             navigationController?.pushViewController(locationVC, animated: false)
+        }
+        else
+        {
+             self.present(self.alert, animated: true)
         }
         
     }
@@ -61,6 +68,26 @@ class RegisterViewController: UIViewController, Api {
     {
         backBtn?.layer.cornerRadius = 5
         nextButton?.layer.cornerRadius = 5
+        
+        txtEmail?.layer.borderWidth = 2
+        txtEmail?.layer.borderColor = UIColor.lightGray.cgColor
+        txtEmail?.layer.cornerRadius = 5
+        
+        txtName?.layer.borderWidth = 2
+        txtName?.layer.cornerRadius = 5
+        txtName?.layer.borderColor = UIColor.lightGray.cgColor
+        
+        txtBirthday?.layer.borderWidth = 2
+        txtBirthday?.layer.cornerRadius = 5
+        txtBirthday?.layer.borderColor = UIColor.lightGray.cgColor
+        
+        txtPassword1?.layer.borderWidth = 2
+        txtPassword1?.layer.cornerRadius = 5
+        txtPassword1?.layer.borderColor = UIColor.lightGray.cgColor
+        
+        txtPassword2?.layer.borderWidth = 2
+        txtPassword2?.layer.cornerRadius = 5
+        txtPassword2?.layer.borderColor = UIColor.lightGray.cgColor
     }
     func showDatePicker(){
         //Formate Date
@@ -205,7 +232,7 @@ class RegisterViewController: UIViewController, Api {
         txtName?.addTarget(self, action: #selector(textFieldEditingDidChangeName), for: UIControlEvents.editingChanged)
     }
     @IBAction func clickNext(_ sender: UIButton!) {
-        
+        showSpinner(onView: self.view)
         FirebaseApiManager.sharedInstance.miPerfil.sEmail = txtEmail?.text
         FirebaseApiManager.sharedInstance.miPerfil.sName = txtName?.text
         FirebaseApiManager.sharedInstance.miPerfil.sBirthday = txtBirthday?.text
@@ -214,11 +241,14 @@ class RegisterViewController: UIViewController, Api {
         if((txtPassword1?.text?.count)! >= 6){
             FirebaseApiManager.sharedInstance.registrarse(email: (txtEmail?.text)!, password: (txtPassword1?.text)!, delegate: self as Api)
             print("Ha hecho el registro?")
-            let locationVC = LocationViewController()
-            navigationController?.pushViewController(locationVC, animated: false)
+           
+            
         }
+        else {
+            
        
         
+    }
     }
     @IBAction func clickBack(_ sender: UIButton!) {
         let loginVC = LoginViewController()
@@ -230,3 +260,4 @@ class RegisterViewController: UIViewController, Api {
     }
     
 }
+

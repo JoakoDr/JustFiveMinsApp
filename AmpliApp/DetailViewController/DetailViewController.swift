@@ -38,7 +38,7 @@ class DetailViewController: UIViewController {
         viewBack.layer.cornerRadius = 8.0
         viewBack.layer.masksToBounds = true
         
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         btnVolver.layer.masksToBounds = true
         txtName.text = user?.sName

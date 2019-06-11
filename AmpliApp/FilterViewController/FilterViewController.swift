@@ -4,13 +4,16 @@ import UIKit
 
 class FilterViewController: UIViewController {
     var arrFilterUsers: [Profile?] = []
+    let btn = UIButton(type: .custom)
     @IBOutlet weak var filterCV: UICollectionView!
     //let floatingButton = MDCFloatingButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         registerCells()
         //setupFloating()
+        floatingButton()
         // Do any additional setup after loading the view.
     }
     
@@ -25,18 +28,28 @@ class FilterViewController: UIViewController {
         filterCV.register(nib, forCellWithReuseIdentifier: "userCell")
         
     }
-    /*
-    func setupFloating()
-    {
-        //floatingButton.applySecondaryTheme(withScheme: containerScheme)
+    func floatingButton(){
+        
+        btn.frame = CGRect(x: 300, y: 650, width: 50, height: 50)
+        btn.setImage(UIImage(named: "back") , for: .normal)
+        btn.backgroundColor = UIColor(hexString: "#941100")
+        btn.clipsToBounds = true
+        btn.layer.cornerRadius = 25
+        btn.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btn.layer.borderWidth = 3.0
+        btn.addTarget(self,action: #selector(FilterViewController.backTapped), for: UIControlEvents.touchUpInside)
+        view.addSubview(btn)
+    }
+    @objc func backTapped()   {
+        let usersVC = UsersViewController()
+        navigationController?.pushViewController(usersVC, animated: false)
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let  off = self.filteredCollectionView.contentOffset.y
+        let  off = self.filterCV.contentOffset.y
         
-        btnBack.frame = CGRect(x: 285, y:   off + 485, width: btnBack.frame.size.width, height: btnBack.frame.size.height)
+        btn.frame = CGRect(x: 285, y:   off + 485, width: btn.frame.size.width, height: btn.frame.size.height)
     }
-    */
 }
 extension FilterViewController:UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

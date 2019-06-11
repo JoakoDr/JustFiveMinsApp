@@ -22,9 +22,32 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    func showSpinner(onView : UIView) {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            vSpinner?.removeFromSuperview()
+            vSpinner = nil
+        }
+    }
 }
+var vSpinner: UIView?
 
 class LoginViewController: UIViewController, UITextFieldDelegate, Api {
+    
     
     @IBOutlet var txtEmail:YoshikoTextField?
     @IBOutlet var txtPassword:YoshikoTextField?
@@ -36,10 +59,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     var boolValidateEmail:Bool? = false
     let emailValidator = EmailValidationPredicate()
     let alert:UIAlertController = UIAlertController(title: "Error en tu e-mail o contraseña", message:  "¡Vuelve a intentarlo otra vez!", preferredStyle: UIAlertControllerStyle.actionSheet)
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         roundButton()
         setupTargets()
@@ -53,7 +77,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     }
     @IBAction func clickLogin(_ sender: UIButton!) {
         
-        FirebaseApiManager.sharedInstance.login(email: (txtEmail?.text)!, password: (txtPassword?.text)!, delegate: self )
+        showSpinner(onView: self.view)
+        FirebaseApiManager.sharedInstance.login(email: (txtEmail?.text)!, password: (txtPassword?.text)!, delegate: self)
         
     }
     @IBAction func clickRegister(_ sender: UIButton!) {
@@ -137,10 +162,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
         }
     }
     func loginUserApi(blFinLogin: Bool) {
-     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+     
         if blFinLogin {
             
             print("TRUE")
+            removeSpinner()
             let usersVC = UsersViewController()
             navigationController?.pushViewController(usersVC, animated: false)
         }

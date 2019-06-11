@@ -91,10 +91,10 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
         let cellA=tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuTableViewCell
         if indexPath.row == 0 {
             
-            cellA.backgroundColor = .clear
+            cellA.backgroundColor = UIColor.lightGray
             
             cellA.selectionStyle = .none
-            cellA.backgroundColor=UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
+            //cellA.backgroundColor=UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
             let nameLbl = UILabel(frame: CGRect(x: 110, y: 50, width: 60, height: 20))
             nameLbl.text = FirebaseApiManager.sharedInstance.miPerfil.sName
             nameLbl.textColor = UIColor.white
@@ -111,7 +111,7 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
             cellImg.layer.masksToBounds=true
             cellImg.contentMode = .scaleAspectFill
             cellImg.layer.masksToBounds=true
-            cellImg.layer.borderColor = UIColor.lightGray.cgColor
+            cellImg.layer.borderColor = UIColor.white.cgColor
             cellImg.layer.borderWidth = 2.0
             if(FirebaseApiManager.sharedInstance.miPerfil.sImage == nil)
             {
@@ -127,6 +127,7 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
             cellA.titleLbl?.text=titleArr[indexPath.row]
             cellA.titleLbl?.textColor=UIColor.black
             cellA.icon?.image = UIImage(named: "home")
+            cellA.icon?.sizeThatFits(CGSize(width: 25, height: 25))
             
             return cellA
             

@@ -38,6 +38,12 @@ extension UIColor {
         return String(format:"#%06x", rgb)
     }
 }
+extension UINavigationController {
+    func setTitleColor(_ color: UIColor) {
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): color]
+        self.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): color]
+    }
+}
 
 class UsersViewController: UIViewController, Api {
     
@@ -70,6 +76,7 @@ class UsersViewController: UIViewController, Api {
         super.viewDidLoad()
         registerCells()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.setTitleColor(UIColor.white)
         FirebaseApiManager.sharedInstance.getUserData(delegate: self)
         setupImageAppBar()
         setupSideBar()

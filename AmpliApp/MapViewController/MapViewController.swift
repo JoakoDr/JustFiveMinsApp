@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestureRecognizerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestureRecognizerDelegate,MKMapViewDelegate {
     
     @IBOutlet var btnSalir:UIButton?
     @IBOutlet var mapa:MKMapView?
@@ -24,6 +24,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestu
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUserLocation()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         downloadFriends()
         mapa!.delegate = self
         print(self.arLocations.count)
@@ -95,6 +96,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestu
                 self.locationInView = sender.location(in: mapa)
                 self.locationOnMap = mapa!.convert(locationInView!, toCoordinateFrom: mapa)
                 addAnnotation(location: self.locationOnMap!)
+                //self.annotation.removeAnnotations(mapa.annotation)
                 arLocations.append(self.locationOnMap)
             }
             
@@ -113,7 +115,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestu
     }
 }
     
-extension MapViewController: MKMapViewDelegate{
+extension MapViewController{
     
     func mapView(_ mapView: MKMapView, view annotation: MKAnnotation) -> MKAnnotationView? {
         

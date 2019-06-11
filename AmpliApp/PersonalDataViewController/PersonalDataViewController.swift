@@ -15,7 +15,7 @@ import FirebaseFirestore
 
 
 extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+    func downloaded(from url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         contentMode = mode
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
@@ -29,18 +29,18 @@ extension UIImageView {
             }
             }.resume()
     }
-    func downloaded(from link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+    func downloaded(from link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {  
         guard let url = URL(string: link) else { return }
         downloaded(from: url, contentMode: mode)
     }
 }
 class PersonalDataViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,MKMapViewDelegate, CLLocationManagerDelegate,Api,UIGestureRecognizerDelegate {
     @IBOutlet var imgUser:UIImageView?
-    @IBOutlet var txtName:AkiraTextField?
-    @IBOutlet var txtSurname:AkiraTextField?
-    @IBOutlet var txtDescription:AkiraTextField?
-    @IBOutlet var txtUniversity:AkiraTextField?
-    @IBOutlet var txtJob:AkiraTextField?
+    @IBOutlet var txtName:YoshikoTextField?
+    @IBOutlet var txtSurname:YoshikoTextField?
+    @IBOutlet var txtDescription:YoshikoTextField?
+    @IBOutlet var txtUniversity:YoshikoTextField?
+    @IBOutlet var txtJob:YoshikoTextField?
     @IBOutlet var btnBack:UIButton?
     @IBOutlet var btnNext:UIButton?
     @IBOutlet var lblError:UILabel?
@@ -54,6 +54,7 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         setUserData()
         roundThings()
         imagePicker.delegate = self
@@ -97,9 +98,12 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         btnNext?.layer.masksToBounds = true
         btnBack?.layer.cornerRadius = 20
         btnBack?.layer.masksToBounds = true
-        imgUser?.layer.cornerRadius = 45
+        imgUser?.layer.cornerRadius = 40
         imgUser?.layer.masksToBounds=true
         imgUser?.contentMode = .scaleAspectFill
+        imgUser?.layer.masksToBounds=true
+        imgUser?.layer.borderColor = UIColor.blue.cgColor
+        imgUser?.layer.borderWidth = 2.0
     }
     func imageGetMap() -> [String:Any]
     {

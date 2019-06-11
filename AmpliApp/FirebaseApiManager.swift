@@ -41,6 +41,7 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
     
     
     
+    
     func initFirebase() {
         FirebaseApp.configure()
         firestoreDB=Firestore.firestore()
@@ -62,6 +63,13 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
                 
             } else {
                 self.arUsers = []
+                self.filterRandom?.arrUsers = []
+                self.filterCountry?.arrUsers = []
+                self.filterCity?.arrUsers = []
+                self.filterUniversity?.arrUsers = []
+                self.filterPostalCode?.arrUsers = []
+                self.filterJob?.arrUsers = []
+                
                 for document in querySnapshot!.documents {
                     
                     let user:Profile = Profile()
@@ -239,7 +247,7 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
                             print(document?.documentID as Any)
                             FirebaseApiManager.sharedInstance.miPerfil.setMap(valores: (document?.data())!)
                             print(document?.data()! as Any)
-                            
+                            //completion(self.firUser!)
                             delegate.loginUserApi!(blFinLogin: true)
                         } else {
                             print("Document does not exist")

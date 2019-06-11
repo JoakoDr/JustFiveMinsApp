@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,39 +29,63 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2W-VM-c1M" customClass="AkiraTextField" customModule="TextFieldEffects">
-                    <rect key="frame" x="26" y="196" width="323" height="53"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="53" id="Guf-eK-oh0"/>
-                    </constraints>
-                    <nil key="textColor"/>
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2W-VM-c1M" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                    <rect key="frame" x="16" y="154" width="343" height="68"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                            <color key="value" red="0.25639015320000003" green="0.68173074570000003" blue="0.96389776469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="inactiveBorderColor">
+                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBackgroundColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="University" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6I-7n-QkP" customClass="AkiraTextField" customModule="TextFieldEffects">
-                    <rect key="frame" x="26" y="457" width="323" height="51"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="51" id="DGm-aH-Ae3"/>
-                    </constraints>
-                    <nil key="textColor"/>
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="University" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6I-7n-QkP" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                    <rect key="frame" x="16" y="457" width="343" height="68"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                            <color key="value" red="0.25639015320000003" green="0.68173074570000003" blue="0.96389776469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="inactiveBorderColor">
+                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBackgroundColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Job" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lXw-0Y-bN7" customClass="AkiraTextField" customModule="TextFieldEffects">
-                    <rect key="frame" x="26" y="396" width="323" height="53"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="53" id="b8T-eW-AU1"/>
-                    </constraints>
-                    <nil key="textColor"/>
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Job" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lXw-0Y-bN7" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                    <rect key="frame" x="16" y="381" width="343" height="68"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                            <color key="value" red="0.25639015320000003" green="0.68173074570000003" blue="0.96389776469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="inactiveBorderColor">
+                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBackgroundColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aE-3E-WRY">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aE-3E-WRY">
                     <rect key="frame" x="70" y="553" width="91" height="56"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="56" id="D8u-hF-d7l"/>
-                        <constraint firstAttribute="width" constant="91" id="jFP-KN-zxZ"/>
-                    </constraints>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Back">
                         <color key="titleColor" red="1" green="0.1099019801" blue="0.01192211879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -69,8 +93,9 @@
                         <action selector="clickBack:" destination="-1" eventType="touchUpInside" id="ibm-2R-MPm"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7km-Ts-YQz">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7km-Ts-YQz">
                     <rect key="frame" x="215" y="553" width="91" height="56"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.3639876246" green="0.20590767260000001" blue="0.69182771440000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Next">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,68 +104,55 @@
                         <action selector="clickNext:" destination="-1" eventType="touchUpInside" id="i99-Br-4nY"/>
                     </connections>
                 </button>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky5-Xw-Bnv" customClass="AkiraTextField" customModule="TextFieldEffects">
-                    <rect key="frame" x="26" y="257" width="323" height="131"/>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grs-ZV-hvf">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grs-ZV-hvf">
                     <rect key="frame" x="179" y="38" width="101" height="42"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="42" id="mbB-bs-fUR"/>
-                    </constraints>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="0.1099019801" blue="0.01192211879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgE-KW-Wpq" customClass="AkiraTextField" customModule="TextFieldEffects">
-                    <rect key="frame" x="116" y="134" width="233" height="54"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="54" id="riF-ej-3dK"/>
-                    </constraints>
-                    <nil key="textColor"/>
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgE-KW-Wpq" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                    <rect key="frame" x="114" y="62" width="233" height="68"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                            <color key="value" red="0.25639015320000003" green="0.68173074570000003" blue="0.96389776469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="inactiveBorderColor">
+                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBackgroundColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="9p3-fD-KZh">
-                    <rect key="frame" x="28" y="108" width="80" height="80"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="80" id="OTr-e2-1qm"/>
-                    </constraints>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="9p3-fD-KZh">
+                    <rect key="frame" x="26" y="50" width="80" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky5-Xw-Bnv" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                    <rect key="frame" x="16" y="242" width="343" height="131"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                            <color key="value" red="0.25490196078431371" green="0.68235294117647061" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="inactiveBorderColor">
+                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="activeBackgroundColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="7km-Ts-YQz" firstAttribute="leading" secondItem="3aE-3E-WRY" secondAttribute="trailing" constant="54" id="0ss-W6-1B9"/>
-                <constraint firstItem="ky5-Xw-Bnv" firstAttribute="top" secondItem="a2W-VM-c1M" secondAttribute="bottom" constant="8" symbolic="YES" id="4PI-Sm-Cjh"/>
-                <constraint firstItem="a2W-VM-c1M" firstAttribute="trailing" secondItem="ky5-Xw-Bnv" secondAttribute="trailing" id="5ff-qA-Ktt"/>
-                <constraint firstItem="9p3-fD-KZh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="28" id="9Sb-jn-K4p"/>
-                <constraint firstItem="lXw-0Y-bN7" firstAttribute="top" secondItem="ky5-Xw-Bnv" secondAttribute="bottom" constant="8" symbolic="YES" id="ARL-Dj-LPa"/>
-                <constraint firstItem="3aE-3E-WRY" firstAttribute="top" secondItem="c6I-7n-QkP" secondAttribute="bottom" constant="45" id="CPF-Rb-Jtj"/>
-                <constraint firstItem="a2W-VM-c1M" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D7K-nP-8pH"/>
-                <constraint firstItem="Grs-ZV-hvf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="18" id="ENz-Sd-kpz"/>
-                <constraint firstItem="OgE-KW-Wpq" firstAttribute="top" secondItem="Grs-ZV-hvf" secondAttribute="bottom" constant="54" id="FuN-H6-GUg"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7km-Ts-YQz" secondAttribute="trailing" constant="69" id="IGT-jM-VcJ"/>
-                <constraint firstItem="a2W-VM-c1M" firstAttribute="top" secondItem="9p3-fD-KZh" secondAttribute="bottom" constant="8" symbolic="YES" id="MRE-0p-5oj"/>
-                <constraint firstItem="ky5-Xw-Bnv" firstAttribute="leading" secondItem="lXw-0Y-bN7" secondAttribute="leading" id="Md7-ay-wwk"/>
-                <constraint firstItem="9p3-fD-KZh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="88" id="N13-CM-lHv"/>
-                <constraint firstItem="a2W-VM-c1M" firstAttribute="top" secondItem="OgE-KW-Wpq" secondAttribute="bottom" constant="8" symbolic="YES" id="P5K-z4-DYq"/>
-                <constraint firstItem="OgE-KW-Wpq" firstAttribute="trailing" secondItem="a2W-VM-c1M" secondAttribute="trailing" id="SRt-6O-sBY"/>
-                <constraint firstItem="lXw-0Y-bN7" firstAttribute="leading" secondItem="c6I-7n-QkP" secondAttribute="leading" id="SY8-x0-gJn"/>
-                <constraint firstItem="ky5-Xw-Bnv" firstAttribute="trailing" secondItem="lXw-0Y-bN7" secondAttribute="trailing" id="ViO-bP-e8f"/>
-                <constraint firstItem="3aE-3E-WRY" firstAttribute="top" secondItem="7km-Ts-YQz" secondAttribute="top" id="YGM-8v-G2Z"/>
-                <constraint firstItem="3aE-3E-WRY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="70" id="dxX-uD-xHg"/>
-                <constraint firstItem="a2W-VM-c1M" firstAttribute="leading" secondItem="ky5-Xw-Bnv" secondAttribute="leading" id="ewB-ab-YaR"/>
-                <constraint firstItem="Grs-ZV-hvf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="179" id="hSz-Ur-ZXl"/>
-                <constraint firstItem="3aE-3E-WRY" firstAttribute="baseline" secondItem="7km-Ts-YQz" secondAttribute="firstBaseline" id="hjG-ol-Cun"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Grs-ZV-hvf" secondAttribute="trailing" constant="95" id="iPJ-pY-o6P"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3aE-3E-WRY" secondAttribute="bottom" constant="58" id="k10-P5-88c"/>
-                <constraint firstItem="a2W-VM-c1M" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="mNU-IH-Heu"/>
-                <constraint firstItem="OgE-KW-Wpq" firstAttribute="leading" secondItem="9p3-fD-KZh" secondAttribute="trailing" constant="8" symbolic="YES" id="ofp-3g-IqN"/>
-                <constraint firstItem="lXw-0Y-bN7" firstAttribute="trailing" secondItem="c6I-7n-QkP" secondAttribute="trailing" id="v8P-BM-5sy"/>
-                <constraint firstItem="c6I-7n-QkP" firstAttribute="top" secondItem="lXw-0Y-bN7" secondAttribute="bottom" constant="8" symbolic="YES" id="wuQ-m6-6uJ"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="37.600000000000001" y="138.98050974512745"/>
         </view>
