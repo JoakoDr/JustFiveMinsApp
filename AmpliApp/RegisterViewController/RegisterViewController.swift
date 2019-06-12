@@ -152,7 +152,7 @@ class RegisterViewController: UIViewController, Api {
         if ((txtPassword1?.text?.count)! >= 6)
         { if (doStringContainsNumber(_string: (txtPassword1?.text)!))
         {
-            lblError?.text = "Contraseña Valida"
+            lblError?.text = ""
             txtPassword1?.layer.borderColor = UIColor.green.cgColor
         }
         else
@@ -171,7 +171,7 @@ class RegisterViewController: UIViewController, Api {
     @IBAction func textFieldEditingDidChangePass2(_ sender: Any) {
         
         if(txtPassword1?.text == txtPassword2?.text){
-            lblError?.text = "Las contraseñas coinciden"
+            lblError?.text = ""
             txtPassword2?.layer.borderColor = UIColor.green.cgColor
             txtPassword1?.layer.borderColor = UIColor.green.cgColor
             } else
@@ -185,7 +185,7 @@ class RegisterViewController: UIViewController, Api {
     @IBAction func textFieldEditingDidChangeEmail(_ sender: Any) {
         let emailValidator = EmailValidationPredicate()
         if(emailValidator.evaluate(with:txtEmail?.text)){
-            lblError?.text = "El email es correcto"
+            lblError?.text = ""
             txtEmail?.layer.borderColor = UIColor.green.cgColor
             } else {
             lblError?.text = "El email es incorrecto"
@@ -210,7 +210,7 @@ class RegisterViewController: UIViewController, Api {
     {
         if(bool == true)
         {
-            print("Todos los campos son correctos")
+            print("")
             nextButton?.isEnabled = true
         }else
         {

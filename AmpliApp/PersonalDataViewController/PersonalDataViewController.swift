@@ -50,12 +50,14 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     let btnSave = UIButton(type: .custom)
     let btnClose = UIButton(type: .custom)
     let alert:UIAlertController = UIAlertController(title: "Perfil Modificado", message: "¡Has modificado tu perfil", preferredStyle: UIAlertControllerStyle.actionSheet)
+    let alert2:UIAlertController = UIAlertController(title: "Profile deleted", message: "¡Thanks for your time!", preferredStyle: UIAlertControllerStyle.actionSheet)
     var userLocation : Location?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         setUserData()
         roundThings()
         floatingButton()
@@ -86,6 +88,7 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
             removeSpinner()
             let loginVC = LoginViewController()
             navigationController?.pushViewController(loginVC, animated: false)
+            self.present(self.alert2, animated: true)
         }
         else
         {
@@ -127,6 +130,8 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         self.imgUser!.downloaded(from: FirebaseApiManager.sharedInstance.miPerfil.sImage!)
         txtName?.text = FirebaseApiManager.sharedInstance.miPerfil.sName
         txtSurname?.text = FirebaseApiManager.sharedInstance.miPerfil.sSurname
+            print(FirebaseApiManager.sharedInstance.miPerfil.sJob)
+             print(FirebaseApiManager.sharedInstance.miPerfil.sEmail)
         txtJob?.text = FirebaseApiManager.sharedInstance.miPerfil.sJob
         txtDescription?.text = FirebaseApiManager.sharedInstance.miPerfil.sDescription
         txtUniversity?.text = FirebaseApiManager.sharedInstance.miPerfil.sUniversity
@@ -183,6 +188,7 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         FirebaseApiManager.sharedInstance.miPerfil.sImage = self.downloadURL
         FirebaseApiManager.sharedInstance.savePerfil(delegate: self)
         //alert.present(self, animated: true, completion: nil)
+        self.present(self.alert, animated: true)
         let vc = UsersViewController()
         navigationController?.pushViewController(vc, animated: false)
     }
