@@ -30,7 +30,7 @@ class FilterViewController: UIViewController {
     }
     func floatingButton(){
         
-        btn.frame = CGRect(x: 300, y: 650, width: 50, height: 50)
+        btn.frame = CGRect(x: 300, y: 600, width: 50, height: 50)
         btn.setImage(UIImage(named: "back") , for: .normal)
         btn.backgroundColor = UIColor(hexString: "#941100")
         btn.clipsToBounds = true
@@ -66,8 +66,11 @@ extension FilterViewController:UICollectionViewDelegate, UICollectionViewDataSou
         // Set up cell
         
         cellA.userName?.text = self.arrFilterUsers[indexPath.row]?.sName
-        cellA.userAge?.text = self.arrFilterUsers[indexPath.row]?.sBirthday
-        //cellA.iconImg?.image = UIImage(named: FirebaseApiManager.sharedInstance.arFilters[indexPath.row].categoryImg!)
+        cellA.userCountry?.text = self.arrFilterUsers[indexPath.row]?.sBirthday
+        //cellA.userImg?.image = cellA.userImg!.downloaded(from: FirebaseApiManager.sharedInstance.miPerfil.sImage!)
+        
+        
+        
         cellA.layer.borderColor = UIColor.lightGray.cgColor
         // cellA.layer.backgroundColor = self.arColorFilters[indexPath.row].cgColor
         cellA.layer.cornerRadius = 6
@@ -87,7 +90,7 @@ extension FilterViewController:UICollectionViewDelegate, UICollectionViewDataSou
         _ = collectionView.cellForItem(at: indexPath)
         let user = self.arrFilterUsers[indexPath.row]
         let registerVC = DetailViewController(user2: user)
-        navigationController?.pushViewController(registerVC, animated: false)
+        present(registerVC, animated: true, completion: nil)
         
     }
     

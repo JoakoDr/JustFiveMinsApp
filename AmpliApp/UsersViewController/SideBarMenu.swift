@@ -82,6 +82,14 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
         let cellNib1 = UINib(nibName: indentifier1, bundle: nil)
         myTableView.register(cellNib1, forCellReuseIdentifier: "usernameCell")
     }
+    func image( _ image:UIImage, withSize newSize:CGSize) -> UIImage {
+        
+        UIGraphicsBeginImageContext(newSize)
+        image.draw(in: CGRect(x: 0,y: 0,width: newSize.width,height: newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!.withRenderingMode(.automatic)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titleArr.count
@@ -95,7 +103,7 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
             
             cellA.selectionStyle = .none
             //cellA.backgroundColor=UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
-            let nameLbl = UILabel(frame: CGRect(x: 110, y: 50, width: 60, height: 20))
+            let nameLbl = UILabel(frame: CGRect(x: 110, y: 50, width: 80, height: 20))
             nameLbl.text = FirebaseApiManager.sharedInstance.miPerfil.sName
             nameLbl.textColor = UIColor.white
             cellA.addSubview(nameLbl)
@@ -126,8 +134,10 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
         
             cellA.titleLbl?.text=titleArr[indexPath.row]
             cellA.titleLbl?.textColor=UIColor.black
+            UIGraphicsBeginImageContext(CGSize(width: 25, height: 25))
             cellA.icon?.image = UIImage(named: "home")
-            cellA.icon?.sizeThatFits(CGSize(width: 25, height: 25))
+            
+            
             
             return cellA
             

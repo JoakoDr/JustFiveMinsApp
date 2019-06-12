@@ -52,6 +52,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     @IBOutlet var txtEmail:YoshikoTextField?
     @IBOutlet var txtPassword:YoshikoTextField?
     @IBOutlet var loginBtn:UIButton?
+    @IBOutlet var resetPass:UIButton?
     @IBOutlet var registerBtn:UIButton?
     @IBOutlet var lblError:UILabel?
     @IBOutlet var lblError2:UILabel?
@@ -74,6 +75,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
         Auth.auth().addStateDidChangeListener { (auth, user) in
         }
         // Do any additional setup after loading the view.
+    }
+    @IBAction func resetPAss(_ sender: Any) {
+        
     }
     @IBAction func clickLogin(_ sender: UIButton!) {
         
@@ -174,6 +178,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
         {
             
             self.present(self.alert, animated: true)
+            removeSpinner()
         }
         
     }

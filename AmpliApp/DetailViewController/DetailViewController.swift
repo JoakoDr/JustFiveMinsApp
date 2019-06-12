@@ -42,8 +42,19 @@ class DetailViewController: UIViewController {
         
         btnVolver.layer.masksToBounds = true
         txtName.text = user?.sName
-        txtBrand.text = user?.sLocation?.sCountry
-       // img.image = UIImage(named: (user?.photo)!)
+        txtBrand.text = user?.sBirthday
+        print(user?.sImage)
+        img.image = UIImage(named: "user" )
+       /* if (img.downloaded(from: (user?.sImage)!) != nil)
+        {
+            img.downloaded(from: (user?.sImage)!)
+        }
+        else {
+            print("Error en la bajada")
+        }
+        */
+        //img.image = UIImage(named: (user?.sImage)!)
+        //UIImage(named: (user?.sImage)!)
         //roundImage()
         // Do any additional setup after loading the view.
     }
@@ -67,7 +78,7 @@ class DetailViewController: UIViewController {
     }
     @IBAction func closeButtonPressed()
     {
-        dismiss(animated: true, completion: nil)
+       self.dismiss(animated: true, completion: nil)
         
     }
     

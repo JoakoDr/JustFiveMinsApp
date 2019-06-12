@@ -11,14 +11,12 @@ import UIKit
 class UsersCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userImg: UIImageView?
     @IBOutlet weak var userName: UILabel?
-    @IBOutlet weak var userAge: UILabel?
-    @IBOutlet weak var iconAdd: UIButton?
-    @IBOutlet weak var iconSee: UIButton?
-    @IBOutlet weak var iconChat: UIButton?
+    @IBOutlet weak var userCountry: UILabel?
+    @IBOutlet var viewLabel:UIView?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        viewLabel?.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
         
         // Initialization code
     }

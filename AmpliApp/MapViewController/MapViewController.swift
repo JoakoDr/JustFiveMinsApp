@@ -12,23 +12,27 @@ import CoreLocation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestureRecognizerDelegate,MKMapViewDelegate {
     
-    @IBOutlet var btnSalir:UIButton?
     @IBOutlet var mapa:MKMapView?
+    @IBOutlet var viewLabel:UIView?
     var locationManager:CLLocationManager?
     var boolLocMan:Bool?
     var arLocations:[CLLocationCoordinate2D?] = []
     var locationInView:CGPoint? = nil
     var locationOnMap:CLLocationCoordinate2D? = nil
     var annotation = MKPointAnnotation()
+    let btnSave = UIButton(type: .custom)
+    let btnClose = UIButton(type: .custom)
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUserLocation()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         downloadFriends()
         mapa!.delegate = self
+        floatingButton()
         print(self.arLocations.count)
-       
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
         mapa!.addGestureRecognizer(longTapGesture)
     }
@@ -46,9 +50,48 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestu
         locationManager?.startUpdatingLocation()
         mapa?.showsUserLocation = true
     }
+    func floatingButton(){
+        
+        //Floating button save
+        btnSave.frame = CGRect(x: 300, y: 600, width: 50, height: 50)
+        btnSave.setImage(UIImage(named: "save") , for: .normal)
+        btnSave.backgroundColor = UIColor(hexString: "#41AEF6")
+        btnSave.contentVerticalAlignment = .fill
+        btnSave.contentHorizontalAlignment = .fill
+        btnSave.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+        btnSave.clipsToBounds = true
+        btnSave.layer.cornerRadius = 25
+        btnSave.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btnSave.layer.borderWidth = 3.0
+        btnSave.addTarget(self,action: #selector(MapViewController.saveTapped), for: UIControlEvents.touchUpInside)
+        view.addSubview(btnSave)
+        
+        
+        btnClose.frame = CGRect(x: 250, y: 600, width: 50, height: 50)
+        btnClose.setImage(UIImage(named: "back") , for: .normal)
+        btnClose.backgroundColor = UIColor(hexString: "#941100")
+        btnClose.clipsToBounds = true
+        btnClose.layer.cornerRadius = 25
+        btnClose.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btnClose.layer.borderWidth = 3.0
+        btnClose.addTarget(self,action: #selector(MapViewController.backTapped), for: UIControlEvents.touchUpInside)
+        view.addSubview(btnClose)
+        
+        viewLabel?.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+    }
     func downloadFriends()
     {
         FirebaseApiManager.sharedInstance.getUserData(delegate: self)
+    }
+    @objc func backTapped()   {
+        let usersVC = UsersViewController()
+        navigationController?.pushViewController(usersVC, animated: false)
+    }
+    @objc func saveTapped()   {
+       print("Has pulsado Save Locationx")
+       // FirebaseApiManager.sharedInstance.miPerfil.sLocation?.sLat = locationOnMap?.latitude
+       // FirebaseApiManager.sharedInstance.miPerfil.sLocation?.sLong = locationOnMap?.longitude
+       // FirebaseApiManager.sharedInstance.setLocation(delegate: self)
     }
     func addMapFriends(latitude lat:Double, longitude lon:Double, titulo tpin:String)
     {
@@ -87,30 +130,35 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestu
             }
         }
     @objc func longTap(sender: UIGestureRecognizer){
-        arLocations = []
-        if(self.arLocations.count == 1 || self.arLocations.count == 0)
-        {
+        
+        let visRect = mapa?.visibleMapRect
+        let inRectAnnotations = mapa?.annotations(in: visRect!)
             print("long tap")
             if sender.state == .changed {
                 
                 self.locationInView = sender.location(in: mapa)
                 self.locationOnMap = mapa!.convert(locationInView!, toCoordinateFrom: mapa)
-                addAnnotation(location: self.locationOnMap!)
+                
                 //self.annotation.removeAnnotations(mapa.annotation)
-                arLocations.append(self.locationOnMap)
-            }
-            
-        }else {
-        addAnnotation(location: self.locationOnMap!)
-    }
+
+                for anno : MKAnnotation in (mapa?.annotations)! {
+                    if ((inRectAnnotations?.contains(anno as! AnyHashable))!) {
+                        if let annotation = annotation as? MKAnnotation {
+                            self.mapa?.removeAnnotation(annotation)
+                        }
+                        
+                    }
+                }
+                addAnnotation(location: self.locationOnMap!)
+     }
+        //addAnnotation(location: self.locationOnMap!)
     }
     func addAnnotation(location: CLLocationCoordinate2D){
          self.annotation = MKPointAnnotation()
         self.annotation.coordinate = location
-        self.annotation.title = "Yo"
-        self.annotation.subtitle = "Dedo Gordo"
+        self.annotation.title = "My Location"
+        self.annotation.subtitle = "Me"
         self.mapa!.addAnnotation(annotation)
-        //self.arLocations.append(Location(sCity: "España", sCountry: "España", sLong: annotation.coordinate.longitude, sLat: annotation.coordinate.latitude, sPostalCode: "28005"))
         
     }
 }

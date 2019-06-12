@@ -44,19 +44,23 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var btnBack:UIButton?
     @IBOutlet var btnNext:UIButton?
     @IBOutlet var lblError:UILabel?
-    @IBOutlet var btnEdit:UIButton?
+    @IBOutlet var btnDeleteAccount:UIButton?
     var editProfile:Profile?
     var downloadURL:String?
     let imagePicker = UIImagePickerController()
     var imgData:Data?
+    let btnSave = UIButton(type: .custom)
+    let btnClose = UIButton(type: .custom)
     let alert:UIAlertController = UIAlertController(title: "Perfil Modificado", message: "¡Has modificado tu perfil", preferredStyle: UIAlertControllerStyle.actionSheet)
     var userLocation : Location?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         setUserData()
         roundThings()
+        floatingButton()
         imagePicker.delegate = self
         self.hideKeyboardWhenTappedAround()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
@@ -69,6 +73,47 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func deleteUser(_ sender: Any) {
+        
+        showSpinner(onView: self.view)
+        FirebaseApiManager.sharedInstance.delete(user: FirebaseApiManager.sharedInstance.firUser!, delegate: self)
+        
+    }
+    func deleteUser(blFinDelete: Bool) {
+        
+        if blFinDelete {
+            
+            print("TRUE")
+            removeSpinner()
+            let loginVC = LoginViewController()
+            navigationController?.pushViewController(loginVC, animated: false)
+        }
+        else
+        {
+            
+            
+            removeSpinner()
+        }
+        
+    }
+    func updateUser(blFinUpdate: Bool) {
+        
+        if blFinUpdate {
+            
+            print("TRUE")
+            removeSpinner()
+           // self.present(self.alert, animated: true)
+            let usersVC = UsersViewController()
+            navigationController?.pushViewController(usersVC, animated: false)
+        }
+        else
+        {
+            
+            //self.present(self.alert, animated: true)
+            removeSpinner()
+        }
+        
     }
     func setUserData()
     {
@@ -92,17 +137,66 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
             
         }
     }
+    func floatingButton(){
+        
+        //Floating button save
+        btnSave.frame = CGRect(x: 300, y: 600, width: 50, height: 50)
+        btnSave.setImage(UIImage(named: "save") , for: .normal)
+        //btnSave.imageView?.contentMode = .scaleAspectFit
+        btnSave.contentVerticalAlignment = .fill
+        btnSave.contentHorizontalAlignment = .fill
+        btnSave.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+        btnSave.backgroundColor = UIColor(hexString: "#41AEF6")
+        btnSave.clipsToBounds = true
+        btnSave.layer.cornerRadius = 25
+        btnSave.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btnSave.layer.borderWidth = 3.0
+        btnSave.addTarget(self,action: #selector(PersonalDataViewController.saveTapped), for: UIControlEvents.touchUpInside)
+        view.addSubview(btnSave)
+        
+        
+        btnClose.frame = CGRect(x: 250, y: 600, width: 50, height: 50)
+        btnClose.setImage(UIImage(named: "back") , for: .normal)
+        btnClose.backgroundColor = UIColor(hexString: "#941100")
+        btnClose.clipsToBounds = true
+        btnClose.layer.cornerRadius = 25
+        btnClose.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btnClose.layer.borderWidth = 3.0
+        btnClose.addTarget(self,action: #selector(PersonalDataViewController.backTapped), for: UIControlEvents.touchUpInside)
+        view.addSubview(btnClose)
+        
+        btnDeleteAccount?.layer.cornerRadius = 5
+        
+    }
+    @objc func backTapped()   {
+        let usersVC = UsersViewController()
+        navigationController?.pushViewController(usersVC, animated: false)
+    }
+    @objc func saveTapped()   {
+        showSpinner(onView: self.view)
+        FirebaseApiManager.sharedInstance.miPerfil.sName = txtName?.text
+        FirebaseApiManager.sharedInstance.miPerfil.sSurname = txtSurname?.text
+        FirebaseApiManager.sharedInstance.miPerfil.sDescription = txtDescription?.text
+        FirebaseApiManager.sharedInstance.miPerfil.sJob =  txtJob?.text
+        FirebaseApiManager.sharedInstance.miPerfil.sUniversity = txtUniversity?.text
+        
+        
+        self.uploadPhoto()
+        FirebaseApiManager.sharedInstance.miPerfil.sImage = self.downloadURL
+        FirebaseApiManager.sharedInstance.savePerfil(delegate: self)
+        //alert.present(self, animated: true, completion: nil)
+        let vc = UsersViewController()
+        navigationController?.pushViewController(vc, animated: false)
+    }
     func roundThings()
     {
-        btnNext?.layer.cornerRadius = 20
-        btnNext?.layer.masksToBounds = true
-        btnBack?.layer.cornerRadius = 20
-        btnBack?.layer.masksToBounds = true
+        btnNext?.layer.cornerRadius = 5
+        btnBack?.layer.cornerRadius = 5
         imgUser?.layer.cornerRadius = 40
         imgUser?.layer.masksToBounds=true
         imgUser?.contentMode = .scaleAspectFill
         imgUser?.layer.masksToBounds=true
-        imgUser?.layer.borderColor = UIColor.blue.cgColor
+        imgUser?.layer.borderColor = UIColor.lightGray.cgColor
         imgUser?.layer.borderWidth = 2.0
     }
     func imageGetMap() -> [String:Any]
@@ -111,22 +205,7 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
             "image": self.downloadURL as Any
         ]
     }
-    @IBAction func clickNext(_ sender: Any) {
-        
-        FirebaseApiManager.sharedInstance.miPerfil.sName = txtName?.text
-            FirebaseApiManager.sharedInstance.miPerfil.sSurname = txtSurname?.text
-            FirebaseApiManager.sharedInstance.miPerfil.sDescription = txtDescription?.text
-            FirebaseApiManager.sharedInstance.miPerfil.sJob =  txtJob?.text
-            FirebaseApiManager.sharedInstance.miPerfil.sUniversity = txtUniversity?.text
-        
-            
-        self.uploadPhoto()
-        FirebaseApiManager.sharedInstance.miPerfil.sImage = self.downloadURL
-        FirebaseApiManager.sharedInstance.savePerfil()
-        let vc = UsersViewController()
-        navigationController?.pushViewController(vc, animated: false)
-        
-    }
+  
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
@@ -183,7 +262,7 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
                         else
                         {
                             print("Has editado tu foto")
-                            FirebaseApiManager.sharedInstance.savePerfil()
+                            FirebaseApiManager.sharedInstance.savePerfil(delegate: self)
                             let reference = Storage.storage().reference(forURL: self.downloadURL!)
                           //  let httpsReference = Storage.storage().reference(forURL: self.downloadURL!)
                             
@@ -199,13 +278,7 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     }//Esta linea explota
     
     }
-        
-        
     
-    @IBAction func clickBack(_ sender: Any) {
-        let vc=UsersViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let img = info[UIImagePickerControllerOriginalImage] as? UIImage
         // convertimos la imagen a jpg

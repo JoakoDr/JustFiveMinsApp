@@ -115,7 +115,7 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
         }
         
     }
-    func setLocation()
+    func setLocation(delegate: Api)
     {
         var locationManager : CLLocationManager?
         locationManager = CLLocationManager()
@@ -144,10 +144,14 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
                         { err in
                             if let err = err {
                                 print("Error adding document: \(err)")
+                                
                             }
                             else
                             {
                                 print("Has cargado tu location!")
+                                //delegate.updateUser!(blFinUpdate: true)
+                                
+                                
                             }
                         }
                     }
@@ -194,7 +198,7 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
             }else
             {
                 print(error!)
-                
+                delegate.createUserApi!(blFinRegistro: false)
             }
             
         }
@@ -203,7 +207,7 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
     }
     
     // guardamos los datos del objeto perfil en forma de hashmap en la coleccion perfiles.
-    func savePerfil() {
+    func savePerfil(delegate: Api) {
         
             print(self.miPerfil.sEmail)
             print(FirebaseApiManager.sharedInstance.firUser?.uid)
@@ -213,11 +217,14 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
         { err in
             if let err = err {
                 print("Error adding document: \(err)")
+                delegate.updateUser!(blFinUpdate: false)
             }
             else
             {
                 print("Has editado tu perfil")
-                FirebaseApiManager.sharedInstance.setLocation()
+                FirebaseApiManager.sharedInstance.setLocation(delegate: self)
+                delegate.updateUser!(blFinUpdate: true)
+                
             }
         }
        
@@ -265,6 +272,18 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
             }
         }
     }
+    func delete(user: User, delegate: Api)  {
+        FirebaseApiManager.sharedInstance.firUser?.delete { error in
+            if let error = error {
+                // An error happened.
+                delegate.deleteUser!(blFinDelete: false)
+            } else {
+                print("Account deleted")
+                delegate.deleteUser!(blFinDelete: true)
+                
+            }
+        }
+    }
  
 }
 @objc protocol Api{
@@ -272,4 +291,7 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
     @objc optional func getUserDataApi(blFin:Bool)
     @objc optional func createUserApi(blFinRegistro:Bool)
     @objc optional func loginUserApi(blFinLogin:Bool)
+    @objc optional func deleteUser(blFinDelete:Bool)
+    @objc optional func updateUser(blFinUpdate:Bool)
+    
 }

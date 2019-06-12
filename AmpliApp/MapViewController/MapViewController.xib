@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="AmpliApp" customModuleProvider="target">
             <connections>
-                <outlet property="btnSalir" destination="PWk-Yh-j0J" id="mJk-fB-CEs"/>
                 <outlet property="mapa" destination="924-sh-ff1" id="7YC-eu-pLg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewLabel" destination="UdM-1M-Huw" id="bUA-Ce-PYc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,30 +22,43 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="924-sh-ff1">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="604"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="924-sh-ff1">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </mapView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWk-Yh-j0J">
-                    <rect key="frame" x="68" y="617" width="239" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="0.1099019801" blue="0.01192211879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title="Back">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select location where do you wanna find some friends or random users." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeW-p7-C10">
-                    <rect key="frame" x="0.0" y="37" width="375" height="92"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdM-1M-Huw">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select location where do you wanna find some friends or random users." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeW-p7-C10">
+                            <rect key="frame" x="0.0" y="-2" width="375" height="132"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="aeW-p7-C10" firstAttribute="top" secondItem="UdM-1M-Huw" secondAttribute="top" constant="-2" id="BwU-Yx-lPQ"/>
+                        <constraint firstAttribute="trailing" secondItem="aeW-p7-C10" secondAttribute="trailing" id="TIb-rW-s7V"/>
+                        <constraint firstItem="aeW-p7-C10" firstAttribute="leading" secondItem="UdM-1M-Huw" secondAttribute="leading" id="Zf6-Bh-mkg"/>
+                        <constraint firstItem="aeW-p7-C10" firstAttribute="centerY" secondItem="UdM-1M-Huw" secondAttribute="centerY" id="kb3-R4-1H2"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="924-sh-ff1" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="9JT-SN-qpd"/>
+                <constraint firstItem="UdM-1M-Huw" firstAttribute="trailing" secondItem="924-sh-ff1" secondAttribute="trailing" id="Bu0-Ic-d7Z"/>
+                <constraint firstItem="UdM-1M-Huw" firstAttribute="top" secondItem="924-sh-ff1" secondAttribute="top" id="SQZ-ou-9HI"/>
+                <constraint firstAttribute="trailing" secondItem="924-sh-ff1" secondAttribute="trailing" id="TVx-9w-vMY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="UdM-1M-Huw" secondAttribute="bottom" constant="539" id="ewu-Qk-Swr"/>
+                <constraint firstItem="924-sh-ff1" firstAttribute="leading" secondItem="UdM-1M-Huw" secondAttribute="leading" id="qm3-7a-rf4"/>
+                <constraint firstItem="UdM-1M-Huw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="t9r-T3-DWN"/>
+                <constraint firstItem="UdM-1M-Huw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x3a-LB-jVz"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="31.5" y="96.5"/>
+            <point key="canvasLocation" x="31.199999999999999" y="95.802098950524751"/>
         </view>
     </objects>
 </document>
