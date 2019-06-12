@@ -37,7 +37,6 @@ class RegisterViewController: UIViewController, Api {
         setTargets()
         self.hideKeyboardWhenTappedAround()
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        // Do any additional setup after loading the view.
     }
     func createUserApi(blFinRegistro: Bool) {
         if blFinRegistro {

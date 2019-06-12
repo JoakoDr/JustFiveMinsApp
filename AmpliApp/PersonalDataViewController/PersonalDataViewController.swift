@@ -41,8 +41,6 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var txtDescription:YoshikoTextField?
     @IBOutlet var txtUniversity:YoshikoTextField?
     @IBOutlet var txtJob:YoshikoTextField?
-    @IBOutlet var btnBack:UIButton?
-    @IBOutlet var btnNext:UIButton?
     @IBOutlet var lblError:UILabel?
     @IBOutlet var btnDeleteAccount:UIButton?
     var editProfile:Profile?
@@ -190,14 +188,33 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     }
     func roundThings()
     {
-        btnNext?.layer.cornerRadius = 5
-        btnBack?.layer.cornerRadius = 5
+        
         imgUser?.layer.cornerRadius = 40
         imgUser?.layer.masksToBounds=true
         imgUser?.contentMode = .scaleAspectFill
         imgUser?.layer.masksToBounds=true
         imgUser?.layer.borderColor = UIColor.lightGray.cgColor
         imgUser?.layer.borderWidth = 2.0
+        
+        txtSurname?.layer.borderWidth = 2
+        txtSurname?.layer.borderColor = UIColor.lightGray.cgColor
+        txtSurname?.layer.cornerRadius = 5
+        
+        txtName?.layer.borderWidth = 2
+        txtName?.layer.cornerRadius = 5
+        txtName?.layer.borderColor = UIColor.lightGray.cgColor
+        
+        txtDescription?.layer.borderWidth = 2
+        txtDescription?.layer.cornerRadius = 5
+        txtDescription?.layer.borderColor = UIColor.lightGray.cgColor
+        
+        txtJob?.layer.borderWidth = 2
+        txtJob?.layer.cornerRadius = 5
+        txtJob?.layer.borderColor = UIColor.lightGray.cgColor
+        
+        txtUniversity?.layer.borderWidth = 2
+        txtUniversity?.layer.cornerRadius = 5
+        txtUniversity?.layer.borderColor = UIColor.lightGray.cgColor
     }
     func imageGetMap() -> [String:Any]
     {

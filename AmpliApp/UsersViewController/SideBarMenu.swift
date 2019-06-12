@@ -134,7 +134,6 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
         
             cellA.titleLbl?.text=titleArr[indexPath.row]
             cellA.titleLbl?.textColor=UIColor.black
-            UIGraphicsBeginImageContext(CGSize(width: 25, height: 25))
             cellA.icon?.image = UIImage(named: "home")
             
             
@@ -147,6 +146,8 @@ class SideBarMenu: UIView, UITableViewDelegate, UITableViewDataSource {
             cellA.titleLbl?.text=titleArr[indexPath.row]
             cellA.titleLbl?.textColor=UIColor.black
             cellA.icon?.image = UIImage(named: "chat")
+            cellA.icon?.contentMode = .scaleAspectFit
+    
             
             return cellA
             

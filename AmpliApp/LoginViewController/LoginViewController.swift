@@ -151,7 +151,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     @IBAction func emailTextFieldEditing(_ sender: Any) {
     }
     @IBAction func textFieldEditingDidChangeEmail(_ sender: Any) {
-        
+        txtEmail?.placeholder?.uppercased()
         if (emailValidator.evaluate(with: txtEmail?.text))
         {
             lblError?.text = ""
