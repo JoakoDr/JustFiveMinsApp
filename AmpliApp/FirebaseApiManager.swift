@@ -291,7 +291,7 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
     }
     func deleteCollection(delegate: Api) {
         let uid = FirebaseApiManager.sharedInstance.firUser?.uid
-        let storage = FirebaseApiManager.sharedInstance.firStorage?.reference(forURL: "gs://test-e53cd.appspot.com")
+        let storage = FirebaseApiManager.sharedInstance.firStorage?.reference(forURL: "gs://justfiveminsios.appspot.com")
         
         // Remove the post from the DB
         FirebaseApiManager.sharedInstance.firestoreDB?.collection("users").document(uid!).delete() { error in

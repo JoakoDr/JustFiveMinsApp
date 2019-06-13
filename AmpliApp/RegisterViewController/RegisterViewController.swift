@@ -41,8 +41,8 @@ class RegisterViewController: UIViewController, Api {
     func createUserApi(blFinRegistro: Bool) {
         if blFinRegistro {
             removeSpinner()
-            let locationVC = LocationViewController()
-            navigationController?.pushViewController(locationVC, animated: false)
+            let usersVC = UsersViewController()
+            navigationController?.pushViewController(usersVC, animated: false)
         }
         else
         {

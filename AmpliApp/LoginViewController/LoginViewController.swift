@@ -71,8 +71,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
         roundButton()
         setupTargets()
         //buttonEnabled()
-        txtEmail?.text = "jo@a.com"
-        txtPassword?.text = "qwerty1"
         self.hideKeyboardWhenTappedAround() 
         Auth.auth().addStateDidChangeListener { (auth, user) in
         }
@@ -181,7 +179,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
             }
             else
             {
-                lblError2?.text = "Contraseña Invalida,le falta un numero"
+                lblError2?.text = ""
                 txtPassword?.layer.borderColor = UIColor.red.cgColor
                 
             }

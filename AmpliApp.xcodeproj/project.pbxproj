@@ -18,7 +18,6 @@
 		262C947F22AAB4C000E6A2DD /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 262C947D22AAB4C000E6A2DD /* DetailViewController.xib */; };
 		262D0D8F228871790037C3AD /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262D0D8D228871790037C3AD /* PhotosViewController.swift */; };
 		262D0D90228871790037C3AD /* PhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 262D0D8E228871790037C3AD /* PhotosViewController.xib */; };
-		262F8215229B431B00C001E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 262F8214229B431A00C001E9 /* GoogleService-Info.plist */; };
 		262F8219229B49E500C001E9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F8217229B49E500C001E9 /* RegisterViewController.swift */; };
 		262F821A229B49E500C001E9 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 262F8218229B49E500C001E9 /* RegisterViewController.xib */; };
 		2630FDF92285CD0500DCAD11 /* UsersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2630FDF72285CD0500DCAD11 /* UsersCollectionViewCell.swift */; };
@@ -51,6 +50,7 @@
 		5D032F1022AD7691007A9BEA /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D032F0E22AD7691007A9BEA /* FilterViewController.xib */; };
 		A2391CAA4824B835C9A6627C /* Pods_AmpliApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24435067648CCDED66B111F /* Pods_AmpliApp.framework */; };
 		A4CE932D22B2909200032B81 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4CE932F22B2909200032B81 /* Localizable.strings */; };
+		A4CE933322B2C1E500032B81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4CE933222B2C1E500032B81 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +82,6 @@
 		262C947D22AAB4C000E6A2DD /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		262D0D8D228871790037C3AD /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		262D0D8E228871790037C3AD /* PhotosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosViewController.xib; sourceTree = "<group>"; };
-		262F8214229B431A00C001E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		262F8217229B49E500C001E9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		262F8218229B49E500C001E9 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		2630FDF72285CD0500DCAD11 /* UsersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -125,6 +124,7 @@
 		A4CE932A22B2903800032B81 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A4CE932E22B2909200032B81 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A4CE933022B2949700032B81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A4CE933222B2C1E500032B81 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,7 +306,7 @@
 				26B82A5522834323005BE91E /* Assets.xcassets */,
 				26B82A5722834323005BE91E /* LaunchScreen.storyboard */,
 				26B82A5A22834323005BE91E /* Info.plist */,
-				262F8214229B431A00C001E9 /* GoogleService-Info.plist */,
+				A4CE933222B2C1E500032B81 /* GoogleService-Info.plist */,
 				26DDBD1B22998CB40071841A /* FirebaseApiManager.swift */,
 				A4CE932F22B2909200032B81 /* Localizable.strings */,
 			);
@@ -517,7 +517,6 @@
 				262BA6D8229DB71E00B45396 /* PersonalDataViewController.xib in Resources */,
 				2630FDFA2285CD0500DCAD11 /* UsersCollectionViewCell.xib in Resources */,
 				26B82A8A2284C600005BE91E /* UsersViewController.xib in Resources */,
-				262F8215229B431B00C001E9 /* GoogleService-Info.plist in Resources */,
 				26B82A5622834323005BE91E /* Assets.xcassets in Resources */,
 				2630FDFF2285DD6C00DCAD11 /* FriendsViewController.xib in Resources */,
 				26D4FF8522A9BF7A00A86CAB /* FilterCollectionViewCell.xib in Resources */,
@@ -526,6 +525,7 @@
 				263D3467228EEEE20082C8CD /* MenuTableViewCell.xib in Resources */,
 				262A298122A4737500A9D405 /* MapViewController.xib in Resources */,
 				A4CE932D22B2909200032B81 /* Localizable.strings in Resources */,
+				A4CE933322B2C1E500032B81 /* GoogleService-Info.plist in Resources */,
 				5D032F1022AD7691007A9BEA /* FilterViewController.xib in Resources */,
 				2685B3622288385200758C74 /* FriendsTableViewCell.xib in Resources */,
 			);
