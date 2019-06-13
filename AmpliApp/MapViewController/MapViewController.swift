@@ -61,18 +61,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestu
         btnSave.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
         btnSave.clipsToBounds = true
         btnSave.layer.cornerRadius = 25
-        btnSave.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btnSave.layer.borderColor = UIColor.clear.cgColor
         btnSave.layer.borderWidth = 3.0
         btnSave.addTarget(self,action: #selector(MapViewController.saveTapped), for: UIControlEvents.touchUpInside)
         view.addSubview(btnSave)
         
         
-        btnClose.frame = CGRect(x: 250, y: 600, width: 50, height: 50)
+        btnClose.frame = CGRect(x: 220, y: 600, width: 50, height: 50)
         btnClose.setImage(UIImage(named: "back") , for: .normal)
         btnClose.backgroundColor = UIColor(hexString: "#941100")
         btnClose.clipsToBounds = true
         btnClose.layer.cornerRadius = 25
-        btnClose.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btnClose.layer.borderColor = UIColor.clear.cgColor
         btnClose.layer.borderWidth = 3.0
         btnClose.addTarget(self,action: #selector(MapViewController.backTapped), for: UIControlEvents.touchUpInside)
         view.addSubview(btnClose)

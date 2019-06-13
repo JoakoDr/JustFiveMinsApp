@@ -56,6 +56,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     @IBOutlet var registerBtn:UIButton?
     @IBOutlet var lblError:UILabel?
     @IBOutlet var lblError2:UILabel?
+    @IBOutlet var scrollView:UIScrollView?
      var boolValidatePass:Bool? = false
     var boolValidateEmail:Bool? = false
     let emailValidator = EmailValidationPredicate()
@@ -75,6 +76,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
         Auth.auth().addStateDidChangeListener { (auth, user) in
         }
         // Do any additional setup after loading the view.
+    }
+    @objc func keyboardWillShow(notification:NSNotification){
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.scrollView!.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scrollView?.contentInset = contentInset
+    }
+    
+    @objc func keyboardWillHide(notification:NSNotification){
+        
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        scrollView?.contentInset = contentInset
     }
     @IBAction func resetPAss(_ sender: Any) {
         

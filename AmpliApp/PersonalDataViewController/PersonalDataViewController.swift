@@ -158,7 +158,7 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         view.addSubview(btnSave)
         
         
-        btnClose.frame = CGRect(x: 250, y: 600, width: 50, height: 50)
+        btnClose.frame = CGRect(x: 220, y: 600, width: 50, height: 50)
         btnClose.setImage(UIImage(named: "back") , for: .normal)
         btnClose.backgroundColor = UIColor(hexString: "#941100")
         btnClose.clipsToBounds = true
