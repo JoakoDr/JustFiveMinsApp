@@ -67,7 +67,13 @@ extension FilterViewController:UICollectionViewDelegate, UICollectionViewDataSou
         
         cellA.userName?.text = self.arrFilterUsers[indexPath.row]?.sName
         cellA.userCountry?.text = self.arrFilterUsers[indexPath.row]?.sBirthday
-        //cellA.userImg?.image = cellA.userImg!.downloaded(from: FirebaseApiManager.sharedInstance.miPerfil.sImage!)
+        cellA.viewLabel?.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        if(arrFilterUsers[indexPath.row]?.sImage == nil)
+        {
+            cellA.userImg?.image = UIImage(named: "user")
+        } else {
+            cellA.userImg?.downloaded(from: (arrFilterUsers[indexPath.row]?.sImage)!)
+        }
         
         
         

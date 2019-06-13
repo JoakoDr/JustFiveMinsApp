@@ -144,12 +144,14 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
                         { err in
                             if let err = err {
                                 print("Error adding document: \(err)")
+                                delegate.updateLocation!(blFinLocation: false)
                                 
                             }
                             else
                             {
                                 print("Has cargado tu location!")
-                                //delegate.updateUser!(blFinUpdate: true)
+                                delegate.updateLocation!(blFinLocation: true)
+                                
                                 
                                 
                             }
@@ -208,7 +210,6 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
     
     // guardamos los datos del objeto perfil en forma de hashmap en la coleccion perfiles.
     func savePerfil(delegate: Api) {
-        
             print(self.miPerfil.sEmail)
             print(FirebaseApiManager.sharedInstance.firUser?.uid)
             print(self.miPerfil.sDescription)
@@ -222,7 +223,6 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
             else
             {
                 print("Has editado tu perfil")
-                FirebaseApiManager.sharedInstance.setLocation(delegate: self)
                 delegate.updateUser!(blFinUpdate: true)
                 
             }
@@ -293,5 +293,6 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
     @objc optional func loginUserApi(blFinLogin:Bool)
     @objc optional func deleteUser(blFinDelete:Bool)
     @objc optional func updateUser(blFinUpdate:Bool)
+    @objc optional func updateLocation(blFinLocation:Bool)
     
 }

@@ -104,14 +104,15 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
             
             print("TRUE")
             removeSpinner()
-           // self.present(self.alert, animated: true)
             let usersVC = UsersViewController()
             navigationController?.pushViewController(usersVC, animated: false)
+            self.present(self.alert, animated: true)
+            
         }
         else
         {
             
-            //self.present(self.alert, animated: true)
+            self.present(self.alert, animated: true)
             removeSpinner()
         }
         
@@ -187,10 +188,6 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         self.uploadPhoto()
         FirebaseApiManager.sharedInstance.miPerfil.sImage = self.downloadURL
         FirebaseApiManager.sharedInstance.savePerfil(delegate: self)
-        //alert.present(self, animated: true, completion: nil)
-        self.present(self.alert, animated: true)
-        let vc = UsersViewController()
-        navigationController?.pushViewController(vc, animated: false)
     }
     func roundThings()
     {

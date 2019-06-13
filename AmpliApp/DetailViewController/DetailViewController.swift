@@ -15,7 +15,11 @@ class DetailViewController: UIViewController {
     internal var user: Profile?
     @IBOutlet weak var txtName: UILabel!
     @IBOutlet weak var viewBack: UIView!
-    @IBOutlet weak var txtBrand: UILabel!
+    @IBOutlet weak var txtLocation: UILabel!
+    @IBOutlet weak var txtJob: UILabel!
+    @IBOutlet weak var txtUniversity: UILabel!
+    @IBOutlet weak var txtAge: UILabel!
+    @IBOutlet weak var txtDescription: UILabel!
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var btnVolver: UIButton!
     
@@ -42,9 +46,18 @@ class DetailViewController: UIViewController {
         
         btnVolver.layer.masksToBounds = true
         txtName.text = user?.sName
-        txtBrand.text = user?.sBirthday
+        txtAge.text = user?.sBirthday
+        txtDescription.text = user?.sDescription
+        txtJob.text = user?.sJob
+        txtUniversity.text = user?.sUniversity
+        txtLocation.text = user?.sLocation?.sCity
         print(user?.sImage)
-        img.image = UIImage(named: "user" )
+        if(FirebaseApiManager.sharedInstance.miPerfil.sImage == nil)
+        {
+            img.image = UIImage(named: "user")
+        } else {
+            img!.downloaded(from: FirebaseApiManager.sharedInstance.miPerfil.sImage!)
+        }
        /* if (img.downloaded(from: (user?.sImage)!) != nil)
         {
             img.downloaded(from: (user?.sImage)!)

@@ -22,11 +22,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestu
     var annotation = MKPointAnnotation()
     let btnSave = UIButton(type: .custom)
     let btnClose = UIButton(type: .custom)
+    let alert:UIAlertController = UIAlertController(title: "Location Updated", message: "¡Location Updated!", preferredStyle: UIAlertControllerStyle.actionSheet)
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         setupUserLocation()
         downloadFriends()
         mapa!.delegate = self
@@ -88,10 +90,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,Api,UIGestu
         navigationController?.pushViewController(usersVC, animated: false)
     }
     @objc func saveTapped()   {
-       print("Has pulsado Save Locationx")
+        showSpinner(onView: self.view)
+        FirebaseApiManager.sharedInstance.setLocation(delegate: self)
        // FirebaseApiManager.sharedInstance.miPerfil.sLocation?.sLat = locationOnMap?.latitude
        // FirebaseApiManager.sharedInstance.miPerfil.sLocation?.sLong = locationOnMap?.longitude
        // FirebaseApiManager.sharedInstance.setLocation(delegate: self)
+    }
+    func updateLocation(blFinLocation: Bool) {
+        if blFinLocation {
+            
+            print("TRUE")
+            removeSpinner()
+            let usersVC = UsersViewController()
+            navigationController?.pushViewController(usersVC, animated: false)
+            self.present(self.alert, animated: true)
+            
+        }
+        else
+        {
+            
+            self.present(self.alert, animated: true)
+            removeSpinner()
+        }
     }
     func addMapFriends(latitude lat:Double, longitude lon:Double, titulo tpin:String)
     {
