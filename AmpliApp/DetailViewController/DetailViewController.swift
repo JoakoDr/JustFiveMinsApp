@@ -50,13 +50,19 @@ class DetailViewController: UIViewController {
         txtDescription.text = user?.sDescription
         txtJob.text = user?.sJob
         txtUniversity.text = user?.sUniversity
-        txtLocation.text = user?.sLocation?.sCity
-        print(user?.sImage)
-        if(FirebaseApiManager.sharedInstance.miPerfil.sImage == nil)
+        if(user?.sLocation?.sCity == nil)
+        {
+            txtLocation.text = "No Location"
+        } else {
+            txtLocation.text = user?.sLocation?.sCity
+        }
+        
+        print(user?.sLocation?.sCountry)
+        if(user?.sImage == nil)
         {
             img.image = UIImage(named: "user")
         } else {
-            img!.downloaded(from: FirebaseApiManager.sharedInstance.miPerfil.sImage!)
+            img!.downloaded(from: (user?.sImage)!)
         }
        /* if (img.downloaded(from: (user?.sImage)!) != nil)
         {

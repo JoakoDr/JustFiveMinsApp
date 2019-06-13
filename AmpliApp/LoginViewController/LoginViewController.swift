@@ -109,7 +109,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     {
         loginBtn?.layer.cornerRadius = 5
         registerBtn?.layer.cornerRadius = 5
+        
+        txtEmail?.layer.borderWidth = 2
+        txtEmail?.layer.borderColor = UIColor.lightGray.cgColor
         txtEmail?.layer.cornerRadius = 5
+        
+        txtPassword?.layer.borderWidth = 2
+        txtPassword?.layer.borderColor = UIColor.lightGray.cgColor
         txtPassword?.layer.cornerRadius = 5
         
     }

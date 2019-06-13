@@ -279,10 +279,25 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
                 delegate.deleteUser!(blFinDelete: false)
             } else {
                 print("Account deleted")
+                FirebaseApiManager.sharedInstance.deleteCollection(delegate: self)
                 delegate.deleteUser!(blFinDelete: true)
                 
             }
         }
+    }
+    func deleteCollection(delegate: Api) {
+        let uid = FirebaseApiManager.sharedInstance.firUser?.uid
+        let storage = FirebaseApiManager.sharedInstance.firStorage?.reference(forURL: "gs://test-e53cd.appspot.com")
+        
+        // Remove the post from the DB
+        FirebaseApiManager.sharedInstance.firestoreDB?.collection("users").document(uid!).delete() { error in
+            if error != nil {
+                print("error \(error)")
+            } else {
+                print("Collection borrada con uid: "+uid!)
+            }
+        }
+        
     }
  
 }

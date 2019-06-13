@@ -32,7 +32,7 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t1R-qj-mE9">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password1" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G6T-Yf-LjN" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password1" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G6T-Yf-LjN" customClass="YoshikoTextField" customModule="TextFieldEffects">
                             <rect key="frame" x="16" y="133" width="343" height="68"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="68" id="5dW-MO-lQH"/>
@@ -58,7 +58,7 @@
                                 <action selector="textFieldEditingDidChangePass1:" destination="-1" eventType="editingDidEnd" id="kZX-q2-bX1"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password2" borderStyle="line" placeholder="Password2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lFu-4f-Gfr" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password2" borderStyle="line" placeholder="Password2" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lFu-4f-Gfr" customClass="YoshikoTextField" customModule="TextFieldEffects">
                             <rect key="frame" x="16" y="209" width="343" height="68"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="68" id="92I-Pz-8ic"/>
@@ -81,7 +81,7 @@
                                 <action selector="textFieldEditingDidChangePass2:" destination="-1" eventType="editingDidEnd" id="3Oc-9T-aBE"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Birthday" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gX5-th-zgn" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Birthday" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gX5-th-zgn" customClass="YoshikoTextField" customModule="TextFieldEffects">
                             <rect key="frame" x="16" y="470" width="343" height="68"/>
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -98,7 +98,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Wc-u8-1Q6" customClass="YoshikoTextField" customModule="TextFieldEffects">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Wc-u8-1Q6" customClass="YoshikoTextField" customModule="TextFieldEffects">
                             <rect key="frame" x="16" y="387" width="343" height="68"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="68" id="4IH-o6-2z3"/>

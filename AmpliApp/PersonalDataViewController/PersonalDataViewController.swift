@@ -122,10 +122,13 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         if FirebaseApiManager.sharedInstance.miPerfil.sImage == nil {
             FirebaseApiManager.sharedInstance.miPerfil.sImage = "user"
             txtName?.text = FirebaseApiManager.sharedInstance.miPerfil.sName
-            txtSurname?.text = FirebaseApiManager.sharedInstance.miPerfil.sSurname
-            txtJob?.text = FirebaseApiManager.sharedInstance.miPerfil.sJob
-            txtDescription?.text = FirebaseApiManager.sharedInstance.miPerfil.sDescription
-            txtUniversity?.text = FirebaseApiManager.sharedInstance.miPerfil.sUniversity
+            if (txtSurname?.text == "") {
+                txtSurname?.text = "Surname"
+                txtJob?.text = "Job"
+                txtDescription?.text = "Description"
+                txtUniversity?.text = "University"
+            } 
+                
         }else {
             
         self.imgUser!.downloaded(from: FirebaseApiManager.sharedInstance.miPerfil.sImage!)
@@ -310,6 +313,7 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         self.dismiss(animated: true, completion: nil)
         
     }
+   
     @IBAction func buttonOnClick(_ sender: UIButton)
     {
         

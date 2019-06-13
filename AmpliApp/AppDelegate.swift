@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FirebaseApiManager.sharedInstance.initFirebase()
             let loginVC = LoginViewController()
             let navigationController = UINavigationController(rootViewController: loginVC)
+            UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFontTextStyle(rawValue: "Roboto"))
+            UILabel.appearance().font = UIFont.boldSystemFont(ofSize: 15)
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
