@@ -156,8 +156,12 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         btnSave.backgroundColor = UIColor(hexString: "#41AEF6")
         btnSave.clipsToBounds = true
         btnSave.layer.cornerRadius = 25
-        btnSave.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btnSave.layer.borderColor = UIColor.clear.cgColor
         btnSave.layer.borderWidth = 3.0
+        btnSave.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        btnSave.layer.shadowRadius = 2.0
+        btnSave.layer.shadowOpacity = 1.0
+        btnSave.layer.masksToBounds = false
         btnSave.addTarget(self,action: #selector(PersonalDataViewController.saveTapped), for: UIControlEvents.touchUpInside)
         view.addSubview(btnSave)
         
@@ -167,8 +171,12 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
         btnClose.backgroundColor = UIColor(hexString: "#941100")
         btnClose.clipsToBounds = true
         btnClose.layer.cornerRadius = 25
-        btnClose.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btnClose.layer.borderColor = UIColor.clear.cgColor
         btnClose.layer.borderWidth = 3.0
+        btnClose.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        btnClose.layer.shadowRadius = 2.0
+        btnClose.layer.shadowOpacity = 1.0
+        btnClose.layer.masksToBounds = false
         btnClose.addTarget(self,action: #selector(PersonalDataViewController.backTapped), for: UIControlEvents.touchUpInside)
         view.addSubview(btnClose)
         

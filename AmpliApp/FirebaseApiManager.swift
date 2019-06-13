@@ -115,6 +115,10 @@ class FirebaseApiManager: NSObject, CLLocationManagerDelegate, Api{
         }
         
     }
+    func resetPass(){
+    
+        
+    }
     func setLocation(delegate: Api)
     {
         var locationManager : CLLocationManager?

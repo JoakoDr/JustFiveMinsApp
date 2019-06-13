@@ -35,8 +35,12 @@ class FilterViewController: UIViewController {
         btn.backgroundColor = UIColor(hexString: "#941100")
         btn.clipsToBounds = true
         btn.layer.cornerRadius = 25
-        btn.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        btn.layer.borderColor = UIColor.clear.cgColor
         btn.layer.borderWidth = 3.0
+        btn.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        btn.layer.shadowRadius = 2.0
+        btn.layer.shadowOpacity = 1.0
+        btn.layer.masksToBounds = false
         btn.addTarget(self,action: #selector(FilterViewController.backTapped), for: UIControlEvents.touchUpInside)
         view.addSubview(btn)
     }

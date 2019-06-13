@@ -57,6 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
     @IBOutlet var lblError:UILabel?
     @IBOutlet var lblError2:UILabel?
     @IBOutlet var scrollView:UIScrollView?
+    var resetEmail:String?
      var boolValidatePass:Bool? = false
     var boolValidateEmail:Bool? = false
     let emailValidator = EmailValidationPredicate()
@@ -93,6 +94,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate, Api {
         scrollView?.contentInset = contentInset
     }
     @IBAction func resetPAss(_ sender: Any) {
+        showSpinner(onView: self.view)
+        let forgotPasswordAlert = UIAlertController(title: "Forgot password?", message: "Enter email address", preferredStyle: .alert)
+        forgotPasswordAlert.addTextField { (textField) in
+            textField.placeholder = "Enter email address"
+        }
+        forgotPasswordAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        forgotPasswordAlert.addAction(UIAlertAction(title: "Reset Password", style: .default, handler: { (action) in
+            self.txtEmail?.text = forgotPasswordAlert.textFields?.first?.text
+            Auth.auth().sendPasswordReset(withEmail: (self.txtEmail?.text!)!, completion: { (error) in
+                if error != nil{
+                    self.removeSpinner()
+                    let resetFailedAlert = UIAlertController(title: "Reset Failed", message: "Error: \(String(describing: error?.localizedDescription))", preferredStyle: .alert)
+                    resetFailedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetFailedAlert, animated: true, completion: nil)
+                }else {
+                    self.removeSpinner()
+                    let resetEmailSentAlert = UIAlertController(title: "Reset email sent successfully", message: "Check your email", preferredStyle: .alert)
+                    resetEmailSentAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetEmailSentAlert, animated: true, completion: nil)
+                }
+            })
+        }))
+        self.present(forgotPasswordAlert, animated: true, completion: nil)
+        Auth.auth().sendPasswordReset(withEmail: (txtEmail?.text!)!, completion: { (error) in
+            //Make sure you execute the following code on the main queue
+            DispatchQueue.main.async {
+                //Use "if let" to access the error, if it is non-nil
+                if let error = error {
+                    let resetFailedAlert = UIAlertController(title: "Reset Failed", message: error.localizedDescription, preferredStyle: .alert)
+                    resetFailedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetFailedAlert, animated: true, completion: nil)
+                } else {
+                    let resetEmailSentAlert = UIAlertController(title: "Reset email sent successfully", message: "Check your email", preferredStyle: .alert)
+                    resetEmailSentAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetEmailSentAlert, animated: true, completion: nil)
+                }
+            }
+        })
         
     }
     @IBAction func clickLogin(_ sender: UIButton!) {
