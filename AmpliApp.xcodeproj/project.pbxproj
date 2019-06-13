@@ -50,6 +50,7 @@
 		5D032F0F22AD7691007A9BEA /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D032F0D22AD7691007A9BEA /* FilterViewController.swift */; };
 		5D032F1022AD7691007A9BEA /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D032F0E22AD7691007A9BEA /* FilterViewController.xib */; };
 		A2391CAA4824B835C9A6627C /* Pods_AmpliApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A24435067648CCDED66B111F /* Pods_AmpliApp.framework */; };
+		A4CE932D22B2909200032B81 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4CE932F22B2909200032B81 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,9 @@
 		783A4459E78221B896F4B6B3 /* Pods-AmpliApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmpliApp.release.xcconfig"; path = "Target Support Files/Pods-AmpliApp/Pods-AmpliApp.release.xcconfig"; sourceTree = "<group>"; };
 		8711BBAEB8412A0E1A443530 /* Pods-AmpliApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmpliApp.debug.xcconfig"; path = "Target Support Files/Pods-AmpliApp/Pods-AmpliApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A24435067648CCDED66B111F /* Pods_AmpliApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmpliApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4CE932A22B2903800032B81 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A4CE932E22B2909200032B81 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A4CE933022B2949700032B81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +308,7 @@
 				26B82A5A22834323005BE91E /* Info.plist */,
 				262F8214229B431A00C001E9 /* GoogleService-Info.plist */,
 				26DDBD1B22998CB40071841A /* FirebaseApiManager.swift */,
+				A4CE932F22B2909200032B81 /* Localizable.strings */,
 			);
 			path = AmpliApp;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				26B82A8022849AEE005BE91E /* LoginViewController.xib in Resources */,
 				263D3467228EEEE20082C8CD /* MenuTableViewCell.xib in Resources */,
 				262A298122A4737500A9D405 /* MapViewController.xib in Resources */,
+				A4CE932D22B2909200032B81 /* Localizable.strings in Resources */,
 				5D032F1022AD7691007A9BEA /* FilterViewController.xib in Resources */,
 				2685B3622288385200758C74 /* FriendsTableViewCell.xib in Resources */,
 			);
@@ -668,8 +674,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				26B82A5822834323005BE91E /* Base */,
+				A4CE932A22B2903800032B81 /* es */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A4CE932F22B2909200032B81 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4CE932E22B2909200032B81 /* es */,
+				A4CE933022B2949700032B81 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -679,6 +695,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -739,6 +756,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

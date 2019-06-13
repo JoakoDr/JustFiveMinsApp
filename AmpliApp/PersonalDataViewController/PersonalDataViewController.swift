@@ -49,8 +49,8 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
     var imgData:Data?
     let btnSave = UIButton(type: .custom)
     let btnClose = UIButton(type: .custom)
-    let alert:UIAlertController = UIAlertController(title: "Perfil Modificado", message: "¡Has modificado tu perfil", preferredStyle: UIAlertControllerStyle.actionSheet)
-    let alert2:UIAlertController = UIAlertController(title: "Profile deleted", message: "¡Thanks for your time!", preferredStyle: UIAlertControllerStyle.actionSheet)
+    let alert:UIAlertController = UIAlertController(title: NSLocalizedString("Profile Updated", comment: ""), message: NSLocalizedString("¡Updated your profile!", comment: ""), preferredStyle: UIAlertControllerStyle.actionSheet)
+    let alert2:UIAlertController = UIAlertController(title: NSLocalizedString("Profile deleted", comment: ""), message: NSLocalizedString("¡Thanks for your time!", comment: ""), preferredStyle: UIAlertControllerStyle.actionSheet)
     var userLocation : Location?
     
     override func viewDidLoad() {
@@ -124,9 +124,9 @@ class PersonalDataViewController: UIViewController, UIImagePickerControllerDeleg
             txtName?.text = FirebaseApiManager.sharedInstance.miPerfil.sName
             if (txtSurname?.text == "") {
                 txtSurname?.text = "Surname"
-                txtJob?.text = "Job"
-                txtDescription?.text = "Description"
-                txtUniversity?.text = "University"
+                txtJob?.text = NSLocalizedString("Job", comment: "")
+                txtDescription?.text = NSLocalizedString("Description", comment: "")
+                txtUniversity?.text = NSLocalizedString("University", comment: "")
             } 
                 
         }else {

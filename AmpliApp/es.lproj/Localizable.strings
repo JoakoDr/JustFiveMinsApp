@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  AmpliApp
+
+  Created by JOAQUIN DIAZ RAMIREZ on 13/6/19.
+  Copyright © 2019 Joaquin Diaz. All rights reserved.
+*/
+
+"Reset Password" = "Olvidaste la contraseña";
+//"Home" = "Inicio";
+"Login" = "Acceder";
+"Register" = "Registrarse";
+"Country" = "Pais";
+"City" = "Ciudad";
+"Postal Code" = "Codigo Postal";
+"Random Users" = "Usuarios Aleatorios";
+"Job" = "Trabajo";
+"University" = "Universidad";
+"Messages" = "Mensajes";
+"Add Location" = "Añadir Localizacion";
+"Friends" = "Amigos";
+"My Photos" = "Mis Fotos";
+"Personal Data" = "Mi perfil";
+"Contact us" = "Contactanos";
+"Close session" = "Salir";
+"Select location where do you wanna find some friends or random users" = "Selecciona una localizacion para encontrar amigos o personas aleatorias";
+//"Profile Updated" = "Perfil modificado";
+//"Profile deleted" = "Perfil borrado";
+//"¡Updated your profile!" = "¡Perfil modificado!";
+//"¡Thanks for your time!" = "¡Gracias por tu tiempo!";
+
